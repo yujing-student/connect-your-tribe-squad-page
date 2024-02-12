@@ -6,10 +6,10 @@ import fetchJson from './helpers/fetch-json.js'
 
 // Stel het basis endpoint in
 const apiUrl = 'https://fdnd.directus.app/items'
-
+// https://fdnd.directus.app/items/person
 // Haal alle squads uit de WHOIS API op
-const squadData = await fetchJson(apiUrl + '/squad')
 
+const squadData = await fetchJson(apiUrl + '/squad')
 // Maak een nieuwe express app aan
 const app = express()
 
@@ -25,13 +25,20 @@ app.use(express.static('public'))
 // Maak een GET route voor de index
 app.get('/', function (request, response) {
   // Haal alle personen uit de WHOIS API op
-  fetchJson(apiUrl + '/person').then((apiData) => {
-    // apiData bevat gegevens van alle personen uit alle squads
-    // Je zou dat hier kunnen filteren, sorteren, of zelfs aanpassen, voordat je het doorgeeft aan de view
+  try{/*als de fetch niet lukt om een reden vang de error op en laat het zien zodat een error display word */
+    fetchJson(apiUrl + '/person').then((apiData) => {
+      // apiData bevat gegevens van alle personen uit alle squads
+      // Je zou dat hier kunnen filteren, sorteren, of zelfs aanpassen, voordat je het doorgeeft aan de view
 
-    // Render index.ejs uit de views map en geef de opgehaalde data mee als variabele, genaamd persons
-    response.render('index', {persons: apiData.data, squads: squadData.data})
-  })
+      // Render index.ejs uit de views map en geef de opgehaalde data mee als variabele, genaamd persons
+      response.render('index', {persons: apiData.data, squads: squadData.data})
+      // console.log(squadData.data)
+    })
+  }
+  catch(error){
+    console.log(error)
+  }
+
 })
 
 // Maak een POST route voor de index

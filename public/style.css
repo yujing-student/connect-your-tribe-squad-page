@@ -1,0 +1,20 @@
+.hide{
+    /*margin-top: -33em;*/
+    /*background-color: red;*/
+    display: none;
+}
+.hide-open{
+   display: block;
+}
+.profile-data{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2em;
+    border: black;
+    border: solid;
+
+}
+.size-avatar{
+    width: 200px;
+}
