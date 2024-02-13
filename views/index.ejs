@@ -1,4 +1,6 @@
 <%- include('./partials/head') %>
+<!--<div class="">-->
+<!--    todo checken of deze code ook echt semantisch is-->
 <nav>
     <button class="button-show-filters">show filter</button>
     <h2 class="hide">filteren</h2>
@@ -26,6 +28,7 @@
             </li>
         </ul>
     </form>
+    <button type="button">filter</button>
     <h3 class="hide">gender:</h3>
     <form class="gender-form hide">
         <ul>
@@ -45,6 +48,7 @@
             </li>
         </ul>
     </form>
+    <button type="button">filter</button>
     <h3 class="hide">sorteer:</h3>
     <form class="sort-form hide">
         <ul>
@@ -54,30 +58,36 @@
             </li>
             <li><label>
                     <input type="checkbox">
-                </label><span>vrouw</span>
+                </label><span>naam z-a</span>
             </li>
             <li>
                 <label>
                     <input type="checkbox">
-                </label><span>nonbinear</span>
+                </label><span>hoog naar laag</span>
+            </li> <li>
+                <label>
+                    <input type="checkbox">
+                </label><span>laag naar hoog</span>
             </li>
         </ul>
     </form>
-
+    <button type="button">filter</button>
 </nav>
-<main>
-    <h2>Students</h2>
-    <section class="">
+    <main class="layout-ipad-desktop">
 
-        <ul class="persons">
-            <% persons.forEach(person => { %>
-                <li class="profile-data"><img class="size-avatar" src="<%= person.avatar %>" alt="avatar is niet ingevoerd"><a
-                            href="./person/<%= person.id %>"> <%= `${person.name} ` %> <%= person.prefix %><%= person.surname %></a>,
-                    squad_id <%= person.squad_id %>, persoonlijk id <%=`${person.id} `%></li>
-            <% }) %>
-        </ul>
-    </section>
-</main>
+        <section class="">
+            <h2>Students</h2>
+            <ul class="persons">
+                <% persons.forEach(person => { %>
+                    <li class="profile-data"><img class="size-avatar" src="<%= person.avatar %>" alt="avatar is niet ingevoerd"><a
+                                href="./person/<%= person.id %>"> <%= `${person.name} ` %> <%= person.prefix %><%= person.surname %></a>,
+                        squad_id <%= person.squad_id %>, persoonlijk id <%=`${person.id} `%></li>
+                <% }) %>
+            </ul>
+        </section>
+    </main>
+<!--</div>-->
+
 
 
 <%- include('./partials/foot') %>
