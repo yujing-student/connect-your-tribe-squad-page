@@ -1,20 +1,59 @@
 .hide{
-    /*margin-top: -33em;*/
+    margin-top: -33em;
     /*background-color: red;*/
-    display: none;
+    /*display: none;*/
 }
 .hide-open{
-   display: block;
+   /*display: block;*/
+    margin-top: 1em;
 }
 .profile-data{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     gap: 2em;
+    align-items: center;
     border: black;
     border: solid;
 
 }
 .size-avatar{
-    width: 200px;
+    width: 250px;
+}
+
+.persons{
+    margin: 0 1em 0 -1em;
+    flex-direction: column;
+    display: flex;
+    row-gap: 2em;
+}
+@media  (min-width: 570px) and (max-width: 768px){
+    .persons{
+        display: grid;
+        grid-template-columns: auto auto;
+        column-gap: 2em;
+    }
+}@media  (min-width: 768px) and (max-width: 1200px){
+    .persons{
+        display: grid;
+        grid-template-columns: auto auto auto;
+        column-gap: 2em;
+    }
+
+}
+@media   (min-width: 908px) and (max-width: 1608px){
+    .persons{
+        margin: 0 1em 0 1em;
+    }
+    .size-avatar{
+        /*width: 300px;*/
+    }
+}
+
+@media  (min-width: 1208px){
+    .persons{
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        column-gap: 2em;
+    }
 }

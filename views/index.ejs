@@ -1,9 +1,10 @@
 <%- include('./partials/head') %>
 <nav>
     <button class="button-show-filters">show filter</button>
-    <h2>filteren</h2>
-    <h3>klassesn:</h3>
-    <form class="clas-form">
+    <h2 class="hide">filteren</h2>
+    <p>uw filters zijn :</p>
+    <h3 class="hide">klassesn:</h3>
+    <form class="clas-form hide">
         <ul>
             <li><label>
                     <input type="checkbox">
@@ -25,8 +26,8 @@
             </li>
         </ul>
     </form>
-    <h3>gender:</h3>
-    <form class="gender-form">
+    <h3 class="hide">gender:</h3>
+    <form class="gender-form hide">
         <ul>
             <li><label>
                     <input type="checkbox">
@@ -44,8 +45,8 @@
             </li>
         </ul>
     </form>
-    <h3>gender:</h3>
-    <form class="sort-form">
+    <h3 class="hide">sorteer:</h3>
+    <form class="sort-form hide">
         <ul>
             <li><label>
                     <input type="checkbox">
@@ -68,9 +69,13 @@
     <h2>Students</h2>
     <section class="">
 
-        <ul>  <% persons.forEach(person => { %>
-                <li class="profile-data"><img class="size-avatar" src="<%= person.avatar%>" alt="avatar"><a href="./person/<%= person.id %>"><%= person.name %></a>, squad_id <%= person.squad_id %></li>
-            <% }) %></ul>
+        <ul class="persons">
+            <% persons.forEach(person => { %>
+                <li class="profile-data"><img class="size-avatar" src="<%= person.avatar %>" alt="avatar is niet ingevoerd"><a
+                            href="./person/<%= person.id %>"> <%= `${person.name} ` %> <%= person.prefix %><%= person.surname %></a>,
+                    squad_id <%= person.squad_id %>, persoonlijk id <%=`${person.id} `%></li>
+            <% }) %>
+        </ul>
     </section>
 </main>
 
