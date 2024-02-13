@@ -1,13 +1,24 @@
 <%- include('./partials/head') %>
 
-<a href="/">Back</a>
+
 <nav>
+    <ul>
+        <li> <%= person.name %></li>
+        <li> <%= person.prefix %></li>
+        <li> <%= person.surname %></li>
+        <li><a href="/">Back</a></li>
+    </ul>
 
 </nav>
+<main>
+    <section>
+        <img class="size-avatar" src="<%= person.avatar %>">
+        <p><%= person.bio %></p>
+    </section>
+</main>
 <h2><%= person.name %></h2>
 
 <p>Squad: <%= person.squad_id %>
 <p>Squad: <%= squads.name %>
-
 
 <%- include('./partials/foot') %>

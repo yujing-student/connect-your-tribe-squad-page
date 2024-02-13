@@ -2,6 +2,9 @@ body{
     overflow-y: auto;
     overflow-x: auto;
 }
+.filters{
+    margin: 0 1em 0 1em;
+}
 .hide {
     margin-top: -33em;
 }
@@ -41,6 +44,9 @@ body{
     }
     nav {
         grid-area: nav;
+        /*grid-column: 276px;*/
+        min-width: 230px;
+        max-width: 276px;
         /* Your nav styles here */
     }
 
