@@ -1,25 +1,22 @@
 <%- include('./partials/head') %>
 
 
-<nav>
-    <ul>
-        <li> <%= person.name %></li>
-        <li> <%= person.prefix %></li>
-        <li> <%= person.surname %></li>
-        <li><a href="/">Back</a></li>
-    </ul>
-
-</nav>
 <main>
-    <section>
+    <section class="bio">
         <img class="size-avatar" src="<%= person.avatar %>">
         <p>over mij: <%= person.bio %></p>
         <p>website: <%= person.website %></p>
     </section>
-</main>
-<h2><%= person.name %></h2>
 
-<p>Squad: <%= person.squad_id %>
-<p>Squad: <%= squads.name %>
+
+
+</main>
+<aside>
+    <section class="info">
+        <h2><%= `${person.name} ` %><%= `${person.prefix} ` %><%= `${person.surname} ` %></h2>
+        <p>Squad: <%= person.squad_id %>
+    </section>
+</aside>
+
 
 <%- include('./partials/foot') %>

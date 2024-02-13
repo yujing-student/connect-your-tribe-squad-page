@@ -3,46 +3,46 @@ body {
     overflow-x: auto;
 }
 
-.filters {
-    margin: 0 1em 0 1em;
-}
+/*.filters {*/
+/*    margin: 0 1em 0 1em;*/
+/*}*/
 
-.hide {
-    margin-top: -33em;
-}
+/*.hide {*/
+/*    margin-top: -33em;*/
+/*}*/
 
-.hide-open {
-    /*display: block;*/
-    margin-top: 1em;
-}
+/*.hide-open {*/
+/*    !*display: block;*!*/
+/*    margin-top: 1em;*/
+/*}*/
 
-.profile-data {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 2em;
-    align-items: center;
-    border: black;
-    border: solid;
+/*.profile-data {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    justify-content: space-between;*/
+/*    gap: 2em;*/
+/*    align-items: center;*/
+/*    border: black;*/
+/*    border: solid;*/
 
-}
+/*}*/
 
 .size-avatar {
     width: 250px;
 }
 
-.persons {
-    margin: 0 1em 0 -1em;
-    flex-direction: column;
-    display: flex;
-    row-gap: 2em;
-}
+/*.persons {*/
+/*    margin: 0 1em 0 -1em;*/
+/*    flex-direction: column;*/
+/*    display: flex;*/
+/*    row-gap: 2em;*/
+/*}*/
 
 @media (min-width: 570px) {
     body {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto  5em 30em 1fr;
+        grid-template-rows: auto  auto auto;
     }
 
     head{
@@ -70,17 +70,19 @@ body {
         height: 50%;
         /* Your nav styles here */
     }
-
-    main {
-        grid-column: 2;
-        grid-row: 2;
-
+    .squads-info{
+        grid-row: 3;
+        grid-column: 1;
     }
 
-    section {
+    .bio {
 
         grid-column: 1;
-        grid-row: 4;
+        grid-row: 2;
+    }
+    aside{
+        grid-column: 1;
+        grid-row: 2;
     }
 
     .hide {
