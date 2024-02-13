@@ -1,10 +1,12 @@
-body{
+body {
     overflow-y: auto;
     overflow-x: auto;
 }
-.filters{
+
+.filters {
     margin: 0 1em 0 1em;
 }
+
 .hide {
     margin-top: -33em;
 }
@@ -36,12 +38,13 @@ body{
     row-gap: 2em;
 }
 
-@media(min-width: 570px){
-    body{
+@media (min-width: 570px) {
+    body {
         display: grid;
-       grid-template-areas: "nav main"
+        grid-template-areas: "nav main"
     "section section";
     }
+
     nav {
         grid-area: nav;
         /*grid-column: 276px;*/
@@ -59,13 +62,16 @@ body{
         grid-area: section;
         /* Your section styles here */
     }
+
     .hide {
         margin-top: 1em;
     }
-    .button-show-filters{
+
+    .button-show-filters {
         display: none;
     }
 }
+
 @media (min-width: 768px) and (max-width: 1200px) {
     .persons {
         display: grid;
