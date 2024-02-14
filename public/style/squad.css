@@ -31,7 +31,7 @@ li{
 }
 
 input[type="checkbox"] {
-    transform: scale(1.2); /* Adjust this value to your liking */
+    transform: scale(1.2); /* vergroten */
 }
 .filter-buttons{
     font-size: 1em;
