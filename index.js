@@ -75,6 +75,20 @@ app.listen(app.get('port'), function () {
     console.log(`Application started on http://localhost:${app.get('port')}`)
 })
 
-
+// {
+//     "version": 2,
+//     "builds": [
+//     {
+//         "src": "index.js",
+//         "use": "@vercel/node"
+//     }
+// ],
+//     "routes": [
+//     {
+//         "src": "/(.*)",
+//         "dest": "/"
+//     }
+// ]
+// }
 //https://jonathans199.medium.com/deploy-node-js-express-api-to-vercel-dbf4461795a5
 //https://shadowsmith.com/thoughts/how-to-deploy-an-express-api-to-vercel
