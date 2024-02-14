@@ -29,7 +29,7 @@ app.get('/', function (request, response) {
         fetchJson(apiUrl + '/person').then((apiData) => {
             // apiData bevat gegevens van alle personen uit alle squads
             // Je zou dat hier kunnen filteren, sorteren, of zelfs aanpassen, voordat je het doorgeeft aan de view
-
+            // todo https://dev.to/yemiklein/how-to-implement-pagination-in-rest-api-5deg#:~:text=Implementing%20pagination%20in%20a%20REST,number%20of%20results%20per%20page. hier naar kijken dat je per pagina iets doet
             // Render index.ejs uit de views map en geef de opgehaalde data mee als variabele, genaamd persons
             response.render('index', {persons: apiData.data, squads: squadData.data})
             // console.log(squadData.data)

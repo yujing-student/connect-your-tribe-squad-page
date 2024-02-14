@@ -1,0 +1,24 @@
+body {
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+
+
+.size-avatar {
+    width: 250px;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+main,section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.information{
+    min-width: 15em;
+    max-width: 30em;
+}
