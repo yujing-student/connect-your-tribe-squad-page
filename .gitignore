@@ -6,3 +6,7 @@ node_modules
 .npm
 .env
 members/
+
+
+/node_modules/
+.env
