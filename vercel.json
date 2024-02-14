@@ -1,8 +1,7 @@
 {
-  "routes": [
+  "rewrites": [
     {
-      "src": "views/",
-      "destination": "/"
+      "source": "/(.*)","destination": "/"
     }
   ]
 }
