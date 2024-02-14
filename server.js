@@ -39,6 +39,16 @@ app.get('/', function (request, response) {
     }
 
 })
+// Squad pagina
+// Haal alle personen uit de betreffende squad uit de WHOIS API op
+
+app.get('/squad', function (request, response) {
+
+    fetchJson('https://fdnd.directus.app/items/person/').then((apiData) => {
+        response.render('squad', {persons: apiData.data})
+    })
+
+})
 
 // Maak een POST route voor de index
 app.post('/', function (request, response) {

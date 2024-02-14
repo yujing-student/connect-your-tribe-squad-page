@@ -1,0 +1,16 @@
+<%- include('./partials/head') %>
+<main class="layout-ipad-desktop">
+
+    <section class="">
+        <h2>Students</h2>
+        <ul class="persons">
+            <% persons.forEach(person => { %>
+                <li class="profile-data"><img class="size-avatar" src="<%= person.avatar %>" alt="avatar is niet ingevoerd"><a
+                            href="./person/<%= person.id %>"> <%= `${person.name} ` %> <%= person.prefix %><%= person.surname %></a>,
+                    squad_id <%= person.squad_id %>, persoonlijk id <%=`${person.id} `%></li>
+            <% }) %>
+        </ul>
+    </section>
+
+</main>
+<%- include('./partials/foot') %>
