@@ -1,6 +1,7 @@
 body {
     overflow-y: auto;
     overflow-x: auto;
+
 }
 
 .filters {
@@ -20,11 +21,18 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 2em;
     align-items: center;
     border: black;
     border: solid;
+    background: linear-gradient(0deg, #55f5e3 20%, #46f17d 100%);
+    font-size: 1.2em;
+    width: 14em;
+    height: 16em;
 
+
+}
+.profile-data:hover{
+    transform:scale(1.1);
 }
 
 .size-avatar {
@@ -41,8 +49,8 @@ body {
 @media (min-width: 570px) {
     body {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto  5em 30em 1fr;
+        grid-template-columns: 15em 1fr;
+        grid-template-rows: auto  auto auto;
     }
 
     head{
@@ -50,7 +58,7 @@ body {
         align-items: center;
 
     }
-    h1{
+    h1,h2{
         justify-content: center;
         align-items: center;
         justify-self: center;
@@ -58,7 +66,9 @@ body {
         grid-row: 1;
     }
     h2{
-        margin-left: 2.5em;
+        grid-column: 2;
+        grid-row: 2;
+        display: grid;
     }
 
     nav {
