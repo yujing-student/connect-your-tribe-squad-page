@@ -1,11 +1,18 @@
 body {
     overflow-y: auto;
     overflow-x: auto;
+    font-family: sans-serif;
 }
-
-.filters {
-    margin: 0 1em 0 1em;
+h1,h2,main{
+    justify-content: center;
+    align-items: center;
+    justify-self: center;
+    display: flex;
+    flex-direction: column;
 }
+/*.filters {*/
+/*     margin-left: 11em;*/
+/* }*/
 
 .hide {
     margin-top: -33em;
@@ -15,7 +22,20 @@ body {
     /*display: block;*/
     margin-top: 1em;
 }
+.filters-ul{
+    margin: 0 7em 1em -2em;
 
+}
+li{
+    list-style: none;
+}
+
+input[type="checkbox"] {
+    transform: scale(1.2); /* Adjust this value to your liking */
+}
+.filter-buttons{
+    font-size: 1em;
+}
 .profile-data {
     display: flex;
     flex-direction: column;
@@ -33,9 +53,8 @@ body {
 .profile-data:hover{
     transform:scale(1.1);
 }
-
 .size-avatar {
-    width: 250px;
+    width: 150px;
 }
 
 .persons {

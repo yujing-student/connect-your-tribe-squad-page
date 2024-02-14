@@ -2,81 +2,83 @@
 <!--<div class="">-->
 <!--    todo checken of deze code ook echt semantisch is-->
     <nav class="filters">
-        <button class="button-show-filters">show filter</button>
-        <h2 class="hide">filteren</h2>
-        <p>uw filters zijn :</p>
+        <button class="button-show-filters filter-buttons">show filter</button>
+        <section class="hide">
+            <h2 class="">filteren</h2>
+            <p>Uw filters zijn:</p>
 
-        <h3 class="hide">klassesn:</h3>
-        <form class="clas-form hide">
-            <ul>
-                <li><label>
-                        <input type="checkbox">
-                    </label><span>1d</span>
-                </li>
-                <li>
-                    <label>
-                        <input type="checkbox">
-                    </label>
-                    <span>1E</span>
-                </li>
-                <li>
-                    <label>
+            <h3 class="">klassen:</h3>
+            <form class="clas-form ">
+                <ul class="filters-ul">
+                    <li><label>
+                            <input type="checkbox">
+                        </label><span>1d</span>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox">
+                        </label>
+                        <span>1E</span>
+                    </li>
+                    <li>
+                        <label>
 
-                        <input type="checkbox">
+                            <input type="checkbox">
 
-                    </label>
-                    <span>1F</span>
-                </li>
-            </ul>
-        </form>
+                        </label>
+                        <span>1F</span>
+                    </li>
+                </ul>
+            </form>
 
-        <button type="button">filter</button>
+            <button class="filter-buttons" type="button">filter</button>
 
-        <h3 class="hide">gender:</h3>
-        <form class="gender-form hide">
-            <ul>
-                <li><label>
-                        <input type="checkbox">
-                    </label><span>man</span>
-                </li>
-                <li>
-                    <label>
-                        <input type="checkbox">
-                    </label>vrouw
-                </li>
-                <li>
-                    <label>
-                        <input type="checkbox">
-                    </label><span>nonbinear</span>
-                </li>
-            </ul>
-        </form>
+            <h3 class="">gender:</h3>
+            <form class="gender-form ">
+                <ul class="filters-ul">
+                    <li><label>
+                            <input type="checkbox">
+                        </label><span>man</span>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox">
+                        </label>vrouw
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox">
+                        </label><span>nonbinear</span>
+                    </li>
+                </ul>
+            </form>
 
-        <button type="button">filter</button>
+            <button class="filter-buttons" type="button">filter</button>
 
-        <h3 class="hide">sorteer:</h3>
-        <form class="sort-form hide">
-            <ul>
-                <li><label>
-                        <input type="checkbox">
-                    </label><span>naam a-z</span>
-                </li>
-                <li><label>
-                        <input type="checkbox">
-                    </label><span>naam z-a</span>
-                </li>
-                <li>
-                    <label>
-                        <input type="checkbox">
-                    </label><span>hoog naar laag</span>
-                </li> <li>
-                    <label>
-                        <input type="checkbox">
-                    </label><span>laag naar hoog</span>
-                </li>
-            </ul>
-        </form>
-        <button type="button">filter</button>
+            <h3 class="">sorteer:</h3>
+            <form class="sort-form ">
+                <ul class="filters-ul">
+                    <li><label>
+                            <input type="radio">
+                        </label><span>naam a-z</span>
+                    </li>
+                    <li><label>
+                            <input type="radio">
+                        </label><span>naam z-a</span>
+                    </li>
+                    <li class="much-information-radio">
+                        <label>
+                            <input type="radio">
+                        </label><span>hoog naar laag</span>
+                    </li> <li class="much-information-radio">
+                        <label>
+                            <input type="radio">
+                        </label><span>laag naar hoog</span>
+                    </li>
+                </ul>
+            </form>
+            <button class="filter-buttons" type="button">filter</button>
+        </section>
     </nav>
     <main class="layout-ipad-desktop">
 
