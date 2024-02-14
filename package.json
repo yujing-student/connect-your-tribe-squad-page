@@ -8,8 +8,7 @@
     "doc": "docs"
   },
   "scripts": {
-    "start": "node index.js",
-    "vercel-build": "echo hello"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
