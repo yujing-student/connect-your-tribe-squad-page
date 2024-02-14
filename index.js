@@ -17,7 +17,7 @@ const app = express()
 app.set('view engine', 'ejs')
 
 // Stel de map met ejs templates in
-// app.set('views', './views')
+app.set('views', './views')
 // app.set('index')
 
 // Gebruik de map 'public' voor statische resources, zoals stylesheets, afbeeldingen en client-side JavaScript
