@@ -1,100 +1,127 @@
 <%- include('./partials/head') %>
 <!--<div class="">-->
 <!--    todo checken of deze code ook echt semantisch is-->
-    <nav class="filters">
-        <button class="button-show-filters filter-buttons">show filter</button>
-        <section class="hide">
-            <h2 class="">filteren</h2>
-            <p>Uw filters zijn:</p>
+<nav class="filters">
+    <button class="button-show-filters filter-buttons">show filter</button>
+    <section class="hide">
+        <h2 class="">filteren</h2>
+        <p>Uw filters zijn:</p>
 
-            <h3 class="">klassen:</h3>
-            <form class="clas-form ">
-                <ul class="filters-ul">
-                    <li><label>
-                            <input type="checkbox">
-                        </label><span>1d</span>
-                    </li>
-                    <li>
-                        <label>
-                            <input type="checkbox">
-                        </label>
-                        <span>1E</span>
-                    </li>
-                    <li>
-                        <label>
-
-                            <input type="checkbox">
-
-                        </label>
-                        <span>1F</span>
-                    </li>
-                </ul>
-            </form>
-
-            <button class="filter-buttons" type="button">filter</button>
-
-            <h3 class="">gender:</h3>
-            <form class="gender-form ">
-                <ul class="filters-ul">
-                    <li><label>
-                            <input type="checkbox">
-                        </label><span>man</span>
-                    </li>
-                    <li>
-                        <label>
-                            <input type="checkbox">
-                        </label>vrouw
-                    </li>
-                    <li>
-                        <label>
-                            <input type="checkbox">
-                        </label><span>nonbinear</span>
-                    </li>
-                </ul>
-            </form>
-
-            <button class="filter-buttons" type="button">filter</button>
-
-            <h3 class="">sorteer:</h3>
-            <form class="sort-form ">
-                <ul class="filters-ul">
-                    <li><label>
-                            <input type="radio">
-                        </label><span>naam a-z</span>
-                    </li>
-                    <li><label>
-                            <input type="radio">
-                        </label><span>naam z-a</span>
-                    </li>
-                    <li class="much-information-radio">
-                        <label>
-                            <input type="radio">
-                        </label><span>hoog naar laag</span>
-                    </li> <li class="much-information-radio">
-                        <label>
-                            <input type="radio">
-                        </label><span>laag naar hoog</span>
-                    </li>
-                </ul>
-            </form>
-            <button class="filter-buttons" type="button">filter</button>
-        </section>
-    </nav>
-    <main class="layout-ipad-desktop">
-
-        <section class="">
-            <h2>Students</h2>
-            <ul class="persons">
-                <% persons.forEach(person => { %>
-                    <li class="profile-data"><img class="size-avatar" src="<%= person.avatar %>" alt="avatar is niet ingevoerd"><a
-                                href="./person/<%= person.id %>"> <%= `${person.name} ` %> <%= `${person.prefix} ` %><%= person.surname %></a>,
-                        squad_id <%= person.squad_id %>, persoonlijk id <%=`${person.id} `%></li>
-                <% }) %>
+        <h3 class="">klassen:</h3>
+        <form class="clas-form ">
+            <ul class="filters-ul">
+                <li>
+                    <label>
+                        <input type="checkbox">
+                    </label>
+                    <span>1d</span>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                    </label>
+                    <span>1E</span>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox">
+                    </label>
+                    <span>1F</span>
+                </li>
             </ul>
-        </section>
+        </form>
 
-    </main>
+        <button class="filter-buttons" type="button">filter</button>
 
+        <h3 class="">gender:</h3>
+        <form class="gender-form ">
+
+            <ul class="filters-ul">
+                <li>
+                    <label>
+                        <input type="checkbox">
+                    </label>
+                    <span>man</span>
+                </li>
+
+                <li>
+                    <label>
+                        <input type="checkbox">
+                    </label>
+                    <span>vrouw</span>
+                </li>
+
+                <li>
+                    <label>
+                        <input type="checkbox">
+                    </label><span>nonbinear</span>
+                </li>
+            </ul>
+
+        </form>
+
+        <button class="filter-buttons" type="button">filter</button>
+
+        <h3 class="">sorteer:</h3>
+        <form class="sort-form ">
+            <ul class="filters-ul">
+                <li>
+                    <label>
+                        <input type="radio">
+                    </label>
+                    <span>naam a-z</span>
+                </li>
+
+                <li>
+                    <label>
+                        <input type="radio">
+                    </label>
+                    <span>naam z-a</span>
+                </li>
+
+                <li class="much-information-radio">
+                    <label>
+                        <input type="radio">
+                    </label>
+                    <span>hoog naar laag</span>
+                </li>
+
+                <li class="much-information-radio">
+                    <label>
+                        <input type="radio">
+                    </label>
+                    <span>laag naar hoog</span>
+                </li>
+
+            </ul>
+
+        </form>
+
+        <button class="filter-buttons" type="button">filter</button>
+    </section>
+</nav>
+<main class="layout-ipad-desktop">
+
+    <section class="">
+        <h2>Students</h2>
+
+        <% squads.forEach(squadData => { %><!--zonder foreach loop geen data omdat je die ophaalt uit server.js-->
+            <button><a href="./squad/<%= squadData.squad_id %>">ga naar squad d</a></button>
+        <% }) %>
+
+        <ul class="persons">
+            <% persons.forEach(person => { %>
+                <li class="profile-data">
+                    <img class="size-avatar" src="<%= person.avatar %>" alt="avatar is niet ingevoerd">
+                    <a href="./person/<%= person.id %>"> <%= `${person.name} ` %> <%= `${person.prefix} ` %><%= person.surname %></a>,
+                    squad_id <%= person.squad_id %>, persoonlijk id <%= `${person.id} ` %></li>
+            <!--geef de gegevens mee en gan naar de person/id nummer pagina-->
+            <% }) %>
+        </ul>
+
+    </section>
+
+</main>
 
 
 <%- include('./partials/foot') %>

@@ -2,13 +2,13 @@
   "name": "connect-your-tribe-squad-page",
   "version": "1.0.0",
   "description": "Redesign met je squad een squadpagina op basis van een bestaande API.",
-  "main": "index.js",
+  "main": "server.js",
   "type": "module",
   "directories": {
     "doc": "docs"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
