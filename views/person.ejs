@@ -1,14 +1,12 @@
 <%- include('./partials/person-head') %>
 
 
-<main>
+<main class="info">
     <section class="bio">
+        <h2><%= `${person.name} ` %><%= `${person.prefix} ` %><%= `${person.surname} ` %></h2>
         <img class="size-avatar" src="<%= person.avatar %>">
         <p class="information">over mij: <%= person.bio %></p>
         <p>website: <%= person.website %></p>
-    </section>
-    <section class="info">
-        <h2><%= `${person.name} ` %><%= `${person.prefix} ` %><%= `${person.surname} ` %></h2>
         <p>Squad: <%= person.squad_id %>
     </section>
 </main>

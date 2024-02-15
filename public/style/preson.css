@@ -7,7 +7,7 @@ body {
 
 
 .size-avatar {
-    width: 250px;
+    width: 150px;
 }
 body{
     display: flex;
@@ -21,5 +21,13 @@ main,section{
 }
 .information{
     min-width: 15em;
-    max-width: 30em;
+    max-width: 20em;
+    margin: 1em;
+}
+.info{
+    border: black;
+    border: solid;
+    background: linear-gradient(0deg, #55f5e3 20%, #46f17d 100%);
+    font-size: 1.2em;
+    margin: 1em 1em 1em 1em;
 }
