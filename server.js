@@ -10,8 +10,7 @@ const apiUrl = 'https://fdnd.directus.app/items'
 // Haal alle squads uit de WHOIS API op
 const allstudents = 'https://fdnd.directus.app/items/person/'
 const klasDNaam='https://fdnd.directus.app/items/person/?filter={%22squad_id%22:3}&sort=name'
-const klaseNaam='https://fdnd.directus.app/items/person/?filter={%22squad_id%22:1}&sort=name'
-const klasfNaam='https://fdnd.directus.app/items/person/?filter={%22squad_id%22:2}&sort=name'
+
 
 const squadData = await fetchJson(apiUrl + '/squad')
 // Maak een nieuwe express app aan
@@ -79,7 +78,3 @@ app.listen(app.get('port'), function () {
     // Toon een bericht in de console en geef het poortnummer door
     console.log(`Application started on http://localhost:${app.get('port')}`)
 })
-
-
-//https://jonathans199.medium.com/deploy-node-js-express-api-to-vercel-dbf4461795a5
-//https://shadowsmith.com/thoughts/how-to-deploy-an-express-api-to-vercel
