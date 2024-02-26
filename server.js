@@ -32,11 +32,10 @@ app.get('/', async function (request, response) {
 
     try {
         const userQuery = await request.query;
-        let key = '';
         const filteredStudent = await everyone.data.filter((info) => {
 
             let isValid = true;
-            for (key in userQuery) {
+            for (let key in userQuery) {
                 // console.log(`dit is de key ${key}`)
                 // console.log(`dit is de userquery dus de invoer ${JSON.stringify(userQuery)}`)
                 // console.log(`dit is de info dus de invoer ${JSON.stringify(info)}`)
