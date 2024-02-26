@@ -2,13 +2,25 @@
 
 
 <main class="info">
-    <section class="bio">
-        <h2><%= `${person.name} ` %><%= `${person.prefix} ` %><%= `${person.surname} ` %></h2>
-        <img class="size-avatar" src="<%= person.avatar %>">
-        <p class="information">over mij: <%= person.bio %></p>
-        <p>website: <%= person.website %></p>
-        <p>Squad: <%= person.squad_id %>
-    </section>
+
+    <ul>
+        <% messages.forEach(message =>{ %>
+            <li><%= message %></li>
+        <% }) %>
+    </ul>
+
+    <h3>laat uw bericht achter</h3>
+    <h2>huide berichten</h2>
+
+    <form method="POST" action="/">
+        <label for="bericht">stuur je bericht
+            <textarea id="bericht" required name="bericht">
+        </textarea>
+        </label>
+        <button type="submit">verstuur je berichts</button>
+
+    </form>
+
 </main>
 
 
