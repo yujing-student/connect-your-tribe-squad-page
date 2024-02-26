@@ -39,9 +39,8 @@ app.get('/', function (request, response) {
         response.render('index',
             {persons: apiData.data,
                 squads: squadData.data,
-                messages: messages
+
             })
-        console.log(messages);
         // console.log(squadData.data)
     })
 
