@@ -1,0 +1,43 @@
+<%- include('./partials/head') %>
+
+<button>
+    <a href="/">Back</a>
+</button>
+<form action="/zoeken" method="get">
+    <label>
+        <input type="search" name="id" required>
+    </label>
+    <button type="submit">Submit</button>
+</form>
+
+
+
+<% datastudent.forEach(function(person)
+
+{
+%>
+    <p class="">student id:
+        <%= person.id %> naam: <a href="./person/<%= person.id %>"><%= person.name %>
+        <%= person.prefix %>
+        <%= person.surname %>
+        </a>
+
+    </p>
+
+<% }); %>
+
+<section class="everyone-show">
+    <h2>everyone</h2>
+    <% data.forEach(function(person)
+
+    {
+    %>
+        <p class="">id number: <%= person.id %>
+            naam: <%= person.name %>
+            <%= person.prefix %>
+            <%= person.surname %>
+        </p>
+
+    <% }); %>
+</section>
+<%- include('./partials/foot') %>

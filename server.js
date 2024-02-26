@@ -4,15 +4,10 @@ import express from 'express'
 // Importeer de zelfgemaakte functie fetchJson uit de ./helpers map
 import fetchJson from './helpers/fetch-json.js'
 
-// Stel het basis endpoint in
-const apiUrl = 'https://fdnd.directus.app/items'
-// https://fdnd.directus.app/items/person
 // Haal alle squads uit de WHOIS API op
-const allstudents = 'https://fdnd.directus.app/items/person'
+const squadData = await fetchJson('https://fdnd.directus.app/items/squad')
+const everyone = await fetchJson('https://fdnd.directus.app/items/person/')
 const klasDNaam='https://fdnd.directus.app/items/person/?filter={%22squad_id%22:3}&sort=name'
-
-
-const squadData = await fetchJson(apiUrl + '/squad')
 // Maak een nieuwe express app aan
 const app = express()
 
@@ -21,68 +16,121 @@ app.set('view engine', 'ejs')
 
 // Stel de map met ejs templates in
 app.set('views', './views')
-// app.set('index')
 
 // Gebruik de map 'public' voor statische resources, zoals stylesheets, afbeeldingen en client-side JavaScript
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }));
 
 // Maak een GET route voor de index
-const messages = []
-app.get('/', function (request, response) {
+app.get('/', async function (request, response) {
     // Haal alle personen uit de WHOIS API op
-    fetchJson(allstudents).then((apiData) => {
-        // apiData bevat gegevens van alle personen uit alle squads
-        // Je zou dat hier kunnen filteren, sorteren, of zelfs aanpassen, voordat je het doorgeeft aan de view
-        // todo als er tijd is https://dev.to/yemiklein/how-to-implement-pagination-in-rest-api-5deg#:~:text=Implementing%20pagination%20in%20a%20REST,number%20of%20results%20per%20page. hier naar kijken dat je per pagina iets doet
-        // Render index.ejs uit de views map en geef de opgehaalde data mee als variabele, genaamd persons
-        response.render('index',
-            {persons: apiData.data,
-                squads: squadData.data,
-
-            })
-        // console.log(squadData.data)
-    })
+    let filteredDataSquadD = everyone.data.filter(person => person.squad_id === 3);/*klas D*/
+    let filteredDataSquadF = everyone.data.filter(person => person.squad_id === 5);/*klas f*/
+    let filteredDataSquadE = everyone.data.filter(person => person.squad_id === 4);
+    let everything = everyone.data;
 
 
+    try {
+        const userQuery = await request.query;
+        let key = '';
+        const filteredStudent = await everyone.data.filter((info) => {
+
+            let isValid = true;
+            for (key in userQuery) {
+                // console.log(`dit is de key ${key}`)
+                // console.log(`dit is de userquery dus de invoer ${JSON.stringify(userQuery)}`)
+                // console.log(`dit is de info dus de invoer ${JSON.stringify(info)}`)
+                isValid = isValid && info[key] == userQuery[key];
+                //     gebruik maken van == instead of === omdat dit false is https://www.freecodecamp.org/news/loose-vs-strict-equality-in-javascript/
+            }
+            return isValid;
+        });
+        // res.json({data: filteredStudent})
+        // res.render('index', );
+        response.render('index', {
+            datastudent: filteredStudent, dataD: filteredDataSquadD,
+            dataf: filteredDataSquadF, dataE: filteredDataSquadE,
+            squads: squadData.data, data: everything,
+            persons: everyone.data
+        });
+        // https://dev.to/callmefarad/simple-query-search-in-node-express-api-4c0e
+        // res.redirect('/student');
+    } catch (err) {
+        response.send(err.message)
+    }
 })
 
-
-// Squad pagina
-// Haal alle personen uit de betreffende squad uit de WHOIS API op
-
-app.get('/squad', function (request, response) {
-
-    fetchJson(klasDNaam).then((apiData) => {/*haal de d klas op*/
-        response.render('squad', {persons: apiData.data})
-    })
-
-
-})
-
-
-
-// Maak een GET route voor een detailpagina met een request parameter id
-app.get('/person/:id', function (request, response) {
-    // Gebruik de request parameter id en haal de juiste persoon uit de WHOIS API op
-    fetchJson(`${apiUrl}/person/` + request.params.id).
-    then((apiData) => {//de paramms id het studentennummer
-
-        // Render person.ejs uit de views map en geef de opgehaalde data mee als variable, genaamd person
-        response.render('person',
-            {person: apiData.data,
-                squads: squadData.data
-                ,
-                messages: messages})
-    })
-})
 // Maak een POST route voor de index
 app.post('/', function (request, response) {
     // Er is nog geen afhandeling van POST, redirect naar GET op /
-    console.log(messages)
     messages.push(request.body.bericht)
-    response.redirect(303, '/')
+    // gebruik maken van person variable omdat er anders weer undefined staat
+    const person = everyone.data;
+    response.redirect('/person/' + person.id);
+
+
 })
+
+// Maak een GET route voor een detailpagina met een request parameter id
+
+const messages = []
+app.get('/person/:id', function (request, response) {
+    fetchJson('https://fdnd.directus.app/items/person/' + request.params.id)
+        .then((apiData) => {
+
+            if (apiData.data) {
+                let info = apiData.data;
+                response.render('person', {info: info, squads: squadData.data, messages: messages});
+
+
+            } else {
+                // console.log('No data found for person with id: ' + request.params.id);
+            }
+        })
+        .catch((error) => {
+            // console.error('Error fetching person data:', error);
+        });
+});
+app.get("/zoeken", async (req, res) => {
+    //     // data.data.custom = JSON.parse(data.data.custom);
+    // in de request is de url /zoeken?id ingegeven nummer
+    try{
+        const userQuery = await req.query; /*dit is het id wat de gebruiker ingeeft bij het zoekvak*/
+
+        const filteredStudent = await everyone.data.filter((informationStudent)=>{ /*dit is een array met daarin de filter waarin de gegevens van een specifieke student staan*/
+
+
+            let isValid = true;
+            for( let key in userQuery) {
+                console.log(`dit is de key :${key}`)/*ook wel het id*/
+                console.log(`dit is de userquery dus de invoer ${JSON.stringify(userQuery)}`)/*het id nummer user id*/
+                console.log(`dit is de info dus de opgehaalde informatie van die persoon ${JSON.stringify(informationStudent)}`)
+                isValid = isValid && informationStudent[key] == userQuery[key];/*is de ingegeveninformatie juist*/
+                //     gebruik maken van == instead of === omdat dit false is https://www.freecodecamp.org/news/loose-vs-strict-equality-in-javascript/
+            }
+            return isValid;
+        });
+        // res.json({data: filteredStudent})
+        // res.render('index', );
+
+        let filteredDataSquadD = everyone.data.filter(person => person.squad_id === 3);/*klas D*/
+        let filteredDataSquadF = everyone.data.filter(person => person.squad_id === 5);/*klas f*/
+        let filteredDataSquadE = everyone.data.filter(person => person.squad_id === 4);
+        let everything = everyone.data;
+
+        res.render('zoeken',{datastudent: filteredStudent,
+            dataD: filteredDataSquadD,
+            dataf: filteredDataSquadF,
+            dataE: filteredDataSquadE,
+            squads: squadData.data,
+            data:everything});
+        // https://dev.to/callmefarad/simple-query-search-in-node-express-api-4c0e
+        // res.redirect('/student');
+    }catch(err){
+        res.send(err.message)
+    }
+});
+
 // Stel het poortnummer in waar express op moet gaan luisteren
 app.set('port', process.env.PORT || 8000)
 

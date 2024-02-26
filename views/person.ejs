@@ -1,27 +1,51 @@
 <%- include('./partials/person-head') %>
 
+<main>
 
-<main class="info">
+    <section>
 
-    <ul>
-        <% messages.forEach(message =>{ %>
-            <li><%= message %></li>
-        <% }) %>
-    </ul>
+        <ul>
 
-    <h3>laat uw bericht achter</h3>
-    <h2>huide berichten</h2>
+            <li >
+                <dl>
+                    <dt>Naam</dt>
+                    <dd><%= info.name %></dd>
+                    <dt>Achternaam </dt>
+                    <dd><%= info.surname %></dd>
+                    <dt>Squad</dt>
+                    <dd><%= info.squad_id %></dd>
+                </dl>
+                <img src="<%= (info.avatar == '') ? '/images/placeholder.jpg' : info.avatar %>"
+                     onerror="this.src='/images/icon.png'">
+            </li>
+            <li>
+                <button>
+                    <a href="/">Back</a>
+                </button>
+            </li>
 
-    <form method="POST" action="/">
-        <label for="bericht">stuur je bericht
-            <textarea id="bericht" required name="bericht">
+        </ul>
+        <h2>huide berichten</h2>
+        <ul>
+            <% messages.forEach(message =>{ %>
+                <li><%= message %></li>
+            <% }) %>
+        </ul>
+
+        <h3>laat uw bericht achter</h3>
+
+
+        <form method="POST" action="/" class="chatbox">
+            <label for="bericht">stuur je bericht
+                <textarea id="bericht" required name="bericht">
         </textarea>
-        </label>
-        <button type="submit">verstuur je berichts</button>
+            </label>
+            <button type="submit">verstuur je berichts</button>
 
-    </form>
+        </form>
+
+    </section>
 
 </main>
-
 
 <%- include('./partials/foot') %>

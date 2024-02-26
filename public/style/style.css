@@ -1,165 +1,244 @@
+:root {
+    --color--main: #233142;
+    --color--secondary: #55F5E3FF;
+    --color--third: #46F17DFF;
+
+    --color--fourth: #e3e3e3;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+}
+
 body {
-    overflow-y: auto;
-    overflow-x: auto;
-    font-family: sans-serif;
-
+    line-height: 1.15;
+    font-family: "Karla", sans-serif;
 }
-h1,h2,main,.filter-buttons{
-    justify-content: center;
+
+
+header {
+    background-color: var(--color--main);
+    color: var(--color--fourth);
+    height: 4em;
+    display: flex;
+    justify-content: space-evenly;
     align-items: center;
-    justify-self: center;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+}
+
+/*.menu {*/
+/*    width: 90%;*/
+/*    max-width: 20em;*/
+/*    background-color: #332659;*/
+/*    color: var(--color--fourth);*/
+/*    position: fixed;*/
+/*    top: 4em;*/
+/*    bottom: 0;*/
+/*    padding-left: 2em;*/
+
+/*}*/
+
+.zoekvak{
+    margin-top: 2em;
+    margin-left: 2em;
+}
+.info-student{
+    margin-top: 2em;
+    margin-left: 2em;
+}
+form {
     display: flex;
     flex-direction: column;
-}
-.filters {
-    margin: 0 1em 3em 1em;
-    font-size: 1.3em;
+    gap: 1.5em;
+    font-size: 17px;
 }
 
-.hide {
-    margin-top: -50em;
+fieldset {
+    border: none;
 }
 
-.hide-open {
-    /*display: block;*/
-    margin-top: 1em;
+legend {
+    font-size: 20px;
+    /*color: black;*/
 }
-.filters-ul{
-    margin: 0 7em 1em -2em;
 
+form label input {
+    /*margin: 0 1em 0 0;*/
+    inset-inline: 1em;
 }
-li{
+
+/*dit is de 2de section met de kaartjes*/
+.students {
+    padding: 1em;
+    /*background-color: red;*/
+}
+
+/*hier zitten alle kaartjes in*/
+ul {
+    display: grid;
+    gap: 1em;
     list-style: none;
-    width: 10em;
+    justify-items: center;
 }
-.much-information-radio{
-    /*display: block;*/
-  width: 10em;
-}
-input[type="checkbox"] {
-    transform: scale(1.2); /* Adjust this value to your liking */
-}
-.filter-buttons{
-    font-size: 1em;
-    background: linear-gradient(0deg, #55f5e3 20%, #46f17d 100%);
-    /*border-radius: 1em;*/
-    /*border: black 1em;*/
-}
-.profile-data {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    border: black;
-    border: solid;
-    background: linear-gradient(0deg, #55f5e3 20%, #46f17d 100%);
-    font-size: 1.2em;
-    width: 14em;
-    height: 16em;
 
+li { /*hier word de indleing bepaald van de inhoud van de kaartjes dus de info en de foto*/
+    display: grid;
+    grid-template-columns: 14em 1fr;
+    grid-template-rows: auto;
+    background-color: var(--color--third);
+    font-size: 20px;
+    padding: 1em;
+    gap: 1em;
+    inset-inline: 1em;
+    /*    https://css-tricks.com/almanac/properties/i/inset/ in wiki todo voor niewuste ontwikkelingen*/
 
 }
 
+/* hier zit de informaite in over de persoon*/
+dl {
+    display: grid;
+    grid-template-columns: 6em auto;
+    grid-template-rows: auto auto auto;
+    /*gap: 1em;*/
+    column-gap: 1em;
 
-.profile-data:hover{
-    transform:scale(1.1);
 }
 
-.size-avatar {
-    width: 150px;
+dt /*dit is de 1ste rij naam achternaam squad de 2de rij heeft geen specifieke opmaak*/
+{
+    grid-column: 1;
+    border-right: #e3e3e3 1px solid;
+
 }
 
-.persons {
-    margin: 0 1em 0 -1em;
-    flex-direction: column;
-    display: flex;
-    row-gap: 2em;
+/*dit is de afbeelding*/
+img {
+    width: 3em;
 }
 
-@media (min-width: 570px) {
-    body {
+@media (width <= 400px) {/*dit is voor hele kleine schermen*/
+
+    li {
         display: grid;
-        grid-template-columns: 15em 1fr;
-        grid-template-rows: auto  auto auto;
-    }
-
-    head{
-        justify-content: center;
-        align-items: center;
+        grid-template-columns: auto;
 
     }
-    h1,h2{
-        justify-content: center;
-        align-items: center;
-        justify-self: center;
-        grid-column: 2;
-        grid-row: 1;
-    }
-    h2{
-        grid-column: 2;
-        grid-row: 2;
+
+    dl {
         display: grid;
+        grid-template-columns: auto;
+        gap: 1em;
     }
 
-    nav {
-        grid-column: 1;
-        grid-row: 2;
-        /*grid-column: 276px;*/
-        min-width: 230px;
-        max-width: 276px;
-        height: 50%;
-        /* Your nav styles here */
+    dt /*dit is de 1ste rij naam achternaam squad de 2de rij heeft geen specifieke opmaak*/
+    {
+        /*grid-column: 1;*/
+        border-bottom: #e3e3e3 1px solid;
+        border-right: none;
+        gap: 1em;
+
+    }
+}
+
+@media (width <= 700px) {
+    /*hier zitten de mobiele elementen in die allen op mobiel weergegeven mag worden*/
+    a svg { /*dit is hamburger menue*/
+        filter: invert(100%) sepia(3%) saturate(222%) hue-rotate(202deg) brightness(111%) contrast(78%);
+        width: 2em;
+
     }
 
+
+    .menu {
+        width: 90%;
+        max-width: 20em;
+        background-color: #332659;
+        color: var(--color--fourth);
+        position: fixed;
+        top: 4em;
+        bottom: 0;
+        padding-left: 2em;
+        transform: translateX(-90%);
+        transition: 0.5s;
+        border-radius: 0 50px 50px 0;
+        z-index: 3;
+
+    }
+
+
+    .show-menu {
+        transform: translateX(0%);
+
+    }
+
+
+}
+
+/*tablet*/
+@media (width >= 700px) {
     main {
-        grid-column: 2;
-        grid-row: 2;
+        display: grid;
+        grid-template-columns: 15em 3fr; /* Adjust this ratio to suit your needs */
+        grid-template-rows: auto auto auto auto; /* Adjust this ratio to suit your needs */
+
 
     }
 
-    section {
-
-        grid-column: 1;
-        grid-row: 4;
-    }
-
-    .hide {
-        margin-top: 1em;
-    }
-
-    .button-show-filters {
+    svg {
         display: none;
     }
-    .persons {
-        margin: 0 1em 0 1em;
+
+    .filter {
+        display: none;
+    }
+
+    .menu {
+
+        max-width: 14em;
+        top: 4em;
+        bottom: 0;
+        background-color: #332659;
+        color: var(--color--fourth);
+        padding: 2em;
+        /*display: grid;*/
+
+
+        grid-column: 1;
+        grid-row-start: 1;
+        grid-row-end: 4;
+    }
+    .info-student{
+        grid-column: 2;
+    }
+    .zoekvak{
+        display: grid;
+        grid-column:2;
+    }
+
+    .students {
+        grid-column: 2;
+
     }
 }
 
-@media (min-width: 768px) and (max-width: 1208px) {
-    .persons {
-        display: grid;
-        grid-template-columns: auto  auto;
-        column-gap: 2em;
-        width: calc(100% - 20px);
-        /*display: flex;*/
-        /*flex-direction: column;*/
+@media (width >= 1100px) {
+
+    ul {
+        /*display: grid;*/
+        grid-template-columns: auto auto;
     }
 
 }
 
+@media (width >= 1600px) {
 
-@media (min-width: 1208px) {
-    .persons {
-        display: grid;
+    ul {
         grid-template-columns: auto auto auto;
-        column-gap: 2em;
-    }
-}
-
-@media (min-width: 1408px) {
-    .persons {
-        display: grid;
-        grid-template-columns: auto auto auto auto;
-        column-gap: 2em;
+        gap: 1em;
     }
 }

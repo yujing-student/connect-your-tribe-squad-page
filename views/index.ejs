@@ -1,127 +1,90 @@
 <%- include('./partials/head') %>
-<!--<div class="">-->
-<!--    todo checken of deze code ook echt semantisch is-->
-<nav class="filters">
-    <button class="button-show-filters filter-buttons">show filter</button>
-    <section class="hide">
-        <h2 class="">filteren</h2>
-        <p>Uw filters zijn:</p>
 
-        <h3 class="">klassen:</h3>
-        <form class="clas-form ">
-            <ul class="filters-ul">
-                <li>
-                    <label>
-                        <input type="checkbox">
-                    </label>
-                    <span>1d</span>
-                </li>
-                <li>
-                    <label>
-                        <input type="checkbox">
-                    </label>
-                    <span>1E</span>
-                </li>
-                <li>
-                    <label>
-                        <input type="checkbox">
-                    </label>
-                    <span>1F</span>
-                </li>
-            </ul>
-        </form>
+<main>
 
-        <button class="filter-buttons" type="button">filter</button>
 
-        <h3 class="">gender:</h3>
-        <form class="gender-form ">
+    <form action="https://api-url.com" class="menu">
+        <fieldset>
+            <legend>klas</legend>
 
-            <ul class="filters-ul">
-                <li>
-                    <label>
-                        <input type="checkbox">
-                    </label>
-                    <span>man</span>
-                </li>
+            <label>
+                <input type="checkbox" name="1D" value="" />
+            </label>
+            <label for="1D">1D</label><br />
+            <label>
+                <input type="checkbox" name="1E" value="" />
+            </label>
+            <label for="1E">1E</label><br />
 
-                <li>
-                    <label>
-                        <input type="checkbox">
-                    </label>
-                    <span>vrouw</span>
-                </li>
+            <label>
+                <input type="checkbox" name="1F" value="" />
+            </label>
+            <label for="1F">1F</label><br />
 
-                <li>
-                    <label>
-                        <input type="checkbox">
-                    </label><span>nonbinear</span>
-                </li>
-            </ul>
+        </fieldset>
+        <fieldset>
+            <legend>geslacht</legend>
 
-        </form>
+            <input type="radio" id="man" name="man" value="" />
+            <label for="man">man</label><br />
 
-        <button class="filter-buttons" type="button">filter</button>
+            <input type="radio" id="Z-A" name="Z-A" value="" />
+            <label for="Z-A">vrouw</label><br />
 
-        <h3 class="">sorteer:</h3>
-        <form class="sort-form ">
-            <ul class="filters-ul">
-                <li>
-                    <label>
-                        <input type="radio">
-                    </label>
-                    <span>naam a-z</span>
-                </li>
+        </fieldset>
+        <fieldset>
+            <legend>naam</legend>
 
-                <li>
-                    <label>
-                        <input type="radio">
-                    </label>
-                    <span>naam z-a</span>
-                </li>
+            <input type="radio" id="A-Z" name="A-Z" value="K" />
+            <label for="A-Z">A-Z</label><br />
 
-                <li class="much-information-radio">
-                    <label>
-                        <input type="radio">
-                    </label>
-                    <span>hoog naar laag</span>
-                </li>
+            <input type="radio" id="Z-A" name="Z-A" value="S" />
+            <label for="Z-A">Z-A</label><br />
 
-                <li class="much-information-radio">
-                    <label>
-                        <input type="radio">
-                    </label>
-                    <span>laag naar hoog</span>
-                </li>
+        </fieldset>
+        <fieldset>
+            <legend>Hoog naar laag</legend>
 
-            </ul>
+            <label>
+                <input type="radio" name="hoog naar laag" value="K" />
+            </label>
+            <label for="hoog naar laag">hoog naar laag</label><br />
 
-        </form>
+            <label>
+                <input type="radio"  name="laag naar hoog" value="S" />
+            </label>
+            <label for="laag naar hoog">laag naar hoog</label><br />
 
-        <button class="filter-buttons" type="button">filter</button>
-    </section>
-</nav>
-<main class="layout-ipad-desktop">
+        </fieldset>
+    </form>
 
-    <section class="">
-        <h2>Students</h2>
 
-        <% squads.forEach(squadData => { %><!--zonder foreach loop geen data omdat je die ophaalt uit server.js-->
-            <button><a href="./squad/<%= squadData.squad_id %>">ga naar squad d</a></button>
+    <!--    <section>-->
+    <form action="/zoeken" method="get" class="zoekvak">
+        <label for="id">geef id op
+            <input type="search" name="id">
+        </label>
+        <button type="submit">zoeken</button>
+    </form>
+    <ul class="students">
+        <% persons.forEach(person => { %>
+            <li >
+                <dl>
+                    <dt>Naam</dt>
+                    <dd><a href="./person/<%= person.id %>"><%= person.name %></a></dd>
+                    <dt>Achternaam </dt>
+                    <dd><%= person.surname %></dd>
+                    <dt>Squad</dt>
+                    <dd><%= person.squad_id %></dd>
+                    <dt>id</dt>
+                    <dd><%= person.id %></dd>
+                </dl>
+                <img src="<%= (person.avatar == '') ? 'images/placeholder.jpg' : person.avatar %>"
+                     onerror="this.src='images/icon.png'">
+            </li>
         <% }) %>
-
-        <ul class="persons">
-            <% persons.forEach(person => { %>
-                <li class="profile-data">
-                    <img class="size-avatar" src="<%= person.avatar %>" alt="avatar is niet ingevoerd">
-                    <a href="./person/<%= person.id %>"> <%= `${person.name} ` %> <%= `${person.prefix} ` %><%= person.surname %></a>,
-                    squad_id <%= person.squad_id %>, persoonlijk id <%= `${person.id} ` %></li>
-            <!--geef de gegevens mee en gan naar de person/id nummer pagina-->
-            <% }) %>
-        </ul>
-
-    </section>
-
+    </ul>
+    <!--    </section>-->
 </main>
-
 
 <%- include('./partials/foot') %>
