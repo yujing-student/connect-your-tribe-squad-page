@@ -3,7 +3,7 @@
 <main>
 
 
-    <form action="https://api-url.com" class="menu">
+    <form action="squad/" class="menu">
         <fieldset>
             <legend>klas</legend>
 
@@ -56,6 +56,7 @@
             <label for="laag naar hoog">laag naar hoog</label><br />
 
         </fieldset>
+        <button type="submit">filteren</button>
     </form>
 
 
@@ -80,10 +81,11 @@
                     <dd><%= person.id %></dd>
                 </dl>
                 <img src="<%= (person.avatar == '') ? 'images/placeholder.jpg' : person.avatar %>"
-                     onerror="this.src='images/icon.png'">
+                     onerror="this.src='images/alternative.jpg'">
             </li>
         <% }) %>
     </ul>
+
     <!--    </section>-->
 </main>
 

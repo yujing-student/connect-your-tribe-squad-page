@@ -1,5 +1,5 @@
 // Importeer het npm pakket express uit de node_modules map
-import express from 'express'
+import express, {json} from 'express'
 
 // Importeer de zelfgemaakte functie fetchJson uit de ./helpers map
 import fetchJson from './helpers/fetch-json.js'
@@ -70,6 +70,36 @@ app.post('/', function (request, response) {
 
 })
 
+app.post('/person/:id/like-or-unlike', function (request, response) {
+    // Er is nog geen afhandeling van POST, redirect naar GET op /
+    fetchJson('https://fdnd.directus.app/items/person/' + request.params.id)
+        .then((apiData) => {
+
+                try{
+                    apiData.data.custom =JSON.parse(apiData.data.custom)
+                    console.log(apiData.data.custom);
+                }
+                catch (e){
+                    apiData.data.custom = {}
+                }
+                apiData.data.custom.like = request.body.actie == 'leuk hoor';
+
+
+            fetchJson('https://fdnd.directus.app/items/person/' + request.params.id, {
+                method: 'PATCH',
+                body: JSON.stringify({
+                    custom: apiData.data.custom
+                }),
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8'
+                }
+            }).then((patchresponse) => {
+                response.redirect(303, 'person/' + request.params.id)
+            })
+
+        })
+})
+
 // Maak een GET route voor een detailpagina met een request parameter id
 
 const messages = []
@@ -79,7 +109,7 @@ app.get('/person/:id', function (request, response) {
 
             if (apiData.data) {
                 let info = apiData.data;
-                response.render('person', {info: info, squads: squadData.data, messages: messages});
+                response.render('person', {person: info, squads: squadData.data, messages: messages});
 
 
             } else {
@@ -90,6 +120,8 @@ app.get('/person/:id', function (request, response) {
             // console.error('Error fetching person data:', error);
         });
 });
+
+
 app.get("/zoeken", async (req, res) => {
     //     // data.data.custom = JSON.parse(data.data.custom);
     // in de request is de url /zoeken?id ingegeven nummer

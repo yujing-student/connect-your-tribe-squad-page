@@ -6,17 +6,17 @@
 
         <ul>
 
-            <li >
+            <li>
                 <dl>
                     <dt>Naam</dt>
-                    <dd><%= info.name %></dd>
-                    <dt>Achternaam </dt>
-                    <dd><%= info.surname %></dd>
+                    <dd><%= person.name %></dd>
+                    <dt>Achternaam</dt>
+                    <dd><%= person.surname %></dd>
                     <dt>Squad</dt>
-                    <dd><%= info.squad_id %></dd>
+                    <dd><%= person.squad_id %></dd>
                 </dl>
-                <img src="<%= (info.avatar == '') ? '/images/placeholder.jpg' : info.avatar %>"
-                     onerror="this.src='/images/icon.png'">
+                <img src="<%= (person.avatar == '') ? 'images/placeholder.jpg' : person.avatar %>"
+                     onerror="this.src='images/alternative.jpg'">
             </li>
             <li>
                 <button>
@@ -43,6 +43,16 @@
             <button type="submit">verstuur je berichts</button>
 
         </form>
+        <form method="post" action="person/<%= person.id %>/like-or-unlike">
+            <% if (person.custom.like) { %>
+                <button type="submit" name="actie" value="niet-zo-leuk-sorry">unlike</button>
+            <% } else { %>
+                <button type="submit" name="actie" value="leuk-hoor">like</button>
+            <% } %>
+        </form>
+
+
+
 
     </section>
 
