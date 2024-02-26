@@ -47,13 +47,7 @@ app.get('/', function (request, response) {
 
 })
 
-// Maak een POST route voor de index
-app.post('/', function (request, response) {
-    // Er is nog geen afhandeling van POST, redirect naar GET op /
-    console.log(messages)
-    messages.push(request.body.bericht)
-    response.redirect(303, '/')
-})
+
 // Squad pagina
 // Haal alle personen uit de betreffende squad uit de WHOIS API op
 
@@ -82,7 +76,13 @@ app.get('/person/:id', function (request, response) {
                 messages: messages})
     })
 })
-
+// Maak een POST route voor de index
+app.post('/', function (request, response) {
+    // Er is nog geen afhandeling van POST, redirect naar GET op /
+    console.log(messages)
+    messages.push(request.body.bericht)
+    response.redirect(303, '/')
+})
 // Stel het poortnummer in waar express op moet gaan luisteren
 app.set('port', process.env.PORT || 8000)
 
