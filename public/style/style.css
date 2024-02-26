@@ -51,6 +51,9 @@ header {
     margin-top: 2em;
     margin-left: 2em;
 }
+.submit-searchbutton{
+    width: 10em;
+}
 form {
     display: flex;
     flex-direction: column;
@@ -219,6 +222,7 @@ img {
         display: grid;
         grid-column:2;
     }
+
 
     .students {
         grid-column: 2;
