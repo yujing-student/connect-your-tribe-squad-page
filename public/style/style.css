@@ -51,6 +51,31 @@ header {
     margin-top: 2em;
     margin-left: 2em;
 }
+.menu {
+    width: 90%;
+    max-width: 20em;
+    background-color: #332659;
+    color: var(--color--fourth);
+    position: fixed;
+    top: 4em;
+    bottom: 0;
+    padding-left: 2em;
+    transform: translateX(-90%);
+    transition: 0.5s;
+    border-radius: 0 50px 50px 0;
+    z-index: 3;
+
+}
+
+.show-menu {
+    transform: translateX(0%);
+
+}
+a svg { /*dit is hamburger menue*/
+    filter: invert(100%) sepia(3%) saturate(222%) hue-rotate(202deg) brightness(111%) contrast(78%);
+    width: 2em;
+
+}
 .submit-searchbutton{
     width: 10em;
 }
@@ -150,11 +175,7 @@ img {
 
 @media (width <= 700px) {
     /*hier zitten de mobiele elementen in die allen op mobiel weergegeven mag worden*/
-    a svg { /*dit is hamburger menue*/
-        filter: invert(100%) sepia(3%) saturate(222%) hue-rotate(202deg) brightness(111%) contrast(78%);
-        width: 2em;
 
-    }
 
 
     .menu {
@@ -192,12 +213,11 @@ img {
 
     }
 
-    svg {
-        display: none;
-    }
-
     .filter {
         display: none;
+    }
+    header{
+        justify-content: center;
     }
 
     .menu {
@@ -223,9 +243,9 @@ img {
         grid-column:2;
     }
 
-
     .students {
-        grid-column: 2;
+        grid-column-start: 1;
+        grid-column-end: 3;
 
     }
 }
@@ -236,6 +256,7 @@ img {
         /*display: grid;*/
         grid-template-columns: auto auto;
     }
+
 
 }
 

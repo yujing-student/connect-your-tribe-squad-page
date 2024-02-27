@@ -43,11 +43,11 @@
             <button type="submit">verstuur je berichts</button>
 
         </form>
-        <form method="post" action="person/<%= person.id %>/like-or-unlike">
+        <form method="POST" action="/person/<%= person.id %>">
             <% if (person.custom.like) { %>
-                <button type="submit" name="actie" value="niet-zo-leuk-sorry">unlike</button>
+                <button type="submit" name="actie" value="vind-ik-niet-leuk">ik vind het niet leuk</button>
             <% } else { %>
-                <button type="submit" name="actie" value="leuk-hoor">like</button>
+                <button type="submit" name="actie" value="vind-ik-leuk">ik vind het leuk</button>
             <% } %>
         </form>
 
