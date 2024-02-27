@@ -9,6 +9,7 @@ const squadData = await fetchJson('https://fdnd.directus.app/items/squad')
 const everyone = await fetchJson('https://fdnd.directus.app/items/person/')
 const klasDNaam = 'https://fdnd.directus.app/items/person/?filter={%22squad_id%22:3}&sort=name'
 const messages = []
+// dit wil ik gebruiken voor het werkend maken van de chebcoxes
 let filteredDataSquadD = everyone.data.filter(person => person.squad_id === 3);/*klas D*/
 let filteredDataSquadF = everyone.data.filter(person => person.squad_id === 5);/*klas f*/
 let filteredDataSquadE = everyone.data.filter(person => person.squad_id === 4);
@@ -29,6 +30,7 @@ app.use(express.urlencoded({extended: true}));
 // Maak een GET route voor de index
 app.get('/', async function (request, response) {
     // Haal alle personen uit de WHOIS API op
+    // hier werkt de zoekfunite niet helemaal zoals gehoopt scroll naar het einde van de pagina
     try {
         const userQuery = await request.query;
         const filteredStudent = await everyone.data.filter((info) => {
@@ -139,13 +141,17 @@ app.post('/person/:id/', function (request, response) {
                 console.log('er is een 2de klik op vind ik leuk'+ apiData.data.custom.like);
 
             }
+            // Stap 3: Sla de data op in de API
 
-            fetchJson('https://fdnd.directus.app/items/person/' + request.params.id, {
-                method: 'PATCH',
+            // Voeg de nieuwe lijst messages toe in de WHOIS API,
+            // via een PATCH request
+            fetchJson('https://fdnd.directus.app/items/person/' + request.params.id, {/*dit is de person/9 bijvoorbeeld*/
+                method: 'PATCH',/*hier zeg je verander de data*/
                 body: JSON.stringify({
                     custom: apiData.data.custom
+                //     https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
                 }),
-                headers: {
+                headers: {/*hier word aangegeven dat het om een json gaat*/
                     'Content-type': 'application/json; charset=UTF-8'
                 }
             }).then((patchresponse) => {
