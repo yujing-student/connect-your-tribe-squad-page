@@ -91,7 +91,7 @@ app.get('/', async function (request, response) {
             dataE: filteredDataSquadE,
             squads: squadData.data,
             data: everything,
-            persons: everyone.data
+            persons: everyone.data/*hier zeg ik dat iedereen getoond moet worden*/
         });
         // https://dev.to/callmefarad/simple-query-search-in-node-express-api-4c0e
         // res.redirect('/student');
@@ -126,9 +126,8 @@ app.get('/person/:id', function (request, response) {
                 } catch (e) {
                     console.log(e)
                 }
-                let info = apiData.data;
                 // info gebruiken om die te linken aan apidata.data
-                response.render('person', {person: info, squads: squadData.data, messages: messages});
+                response.render('person', {person: apiData.data, squads: squadData.data, messages: messages});
                 //     messages moet uitgevoerd worden met de meegegeven array
 
 
