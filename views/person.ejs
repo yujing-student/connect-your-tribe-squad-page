@@ -27,18 +27,22 @@
         </ul>
         <h2>huide berichten</h2>
         <ul>
-            <% messages.forEach(message =>{ %>
-                <li><%= message %></li>
+            <% messages.forEach(message =>{ %><!--de array word nu doorlopen -->
+                <li><%= message %></li><!--iedere keer als er een niew bericht komt is er een niewe li-->
+<!--            message is het bericht wat de gebruiker heeft ingevoerd-->
             <% }) %>
         </ul>
 
         <h3>laat uw bericht achter</h3>
 
 
-        <form method="POST" action="/" class="chatbox">
+        <form method="POST" action="/" class="chatbox"><!--action dat is de plek waar het naartoe moet in dit geval de zelfde pagina
+        en post is de methode wat er moet gebeuren dus dat je code verzend in de array-->
             <label for="bericht">stuur je bericht
+                <input type="hidden" name="id" value="<%= person.id %>">
                 <textarea id="bericht" required name="bericht">
         </textarea>
+<!--                ik heb name bericht genoemd want dit is noodzakelijk-->
             </label>
             <button type="submit">verstuur je berichts</button>
 

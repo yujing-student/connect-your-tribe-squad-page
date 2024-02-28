@@ -63,12 +63,12 @@
     <!--    <section>-->
     <form action="/zoeken" method="get" class="zoekvak">
         <label for="id">geef je eigen id op die in de database staat
-            <input type="search" name="id">
+            <input type="search" name="id"><!--ik zeg nu ga zoeken en als name geef ik mee dat het id is en dat daar op gezocht word-->
         </label>
         <button type="submit" class="submit-searchbutton">zoeken</button>
     </form>
     <ul class="students">
-        <% persons.forEach(person => { %>
+        <% persons.forEach(person => { %><!--dit is de foreach loop waarin geloopt word door de fetch api dus iedereen die in de database staat-->
             <li >
                 <dl>
                     <dt>Naam</dt>
