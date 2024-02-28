@@ -1,52 +1,40 @@
-<%- include('./partials/person-head') %>
+<%- include('./partials/head') %>
+<main class="MPerson">
+    <a href="/">Back</a>
+    <section class="personcard">
+        <div>
+            <dl>
+                <dt>Naam</dt>
+                <dd><a href="./person/<%= person.id %>"><%= person.name %></a></dd>
+                <dt>Achternaam</dt>
+                <dd><%= person.surname %></dd>
+                <dt>Squad</dt>
+                <dd><%= person.squad_id %></dd>
+                <dt>Bio</dt>
+                <dd><%= person.bio %></dd>
+            </dl>
+            <img src="<%= (person.avatar == '') ? 'images/placeholder.jpg' : person.avatar %>"
+                 onerror="this.src='images/alternative.jpg'">
+        </div>
+    </section>
+    <section class="send">
 
-<main>
-
-    <section>
-
-        <ul>
-
-            <li>
-                <dl>
-                    <dt>Naam</dt>
-                    <dd><%= person.name %></dd>
-                    <dt>Achternaam</dt>
-                    <dd><%= person.surname %></dd>
-                    <dt>Squad</dt>
-                    <dd><%= person.squad_id %></dd>
-                </dl>
-                <img src="<%= (person.avatar == '') ? 'images/placeholder.jpg' : person.avatar %>"
-                     onerror="this.src='images/alternative.jpg'">
-            </li>
-            <li>
-                <button>
-                    <a href="/">Back</a>
-                </button>
-            </li>
-
-        </ul>
-        <h2>huide berichten</h2>
-        <ul>
-            <% messages.forEach(message =>{ %><!--de array word nu doorlopen -->
-                <li><%= message %></li><!--iedere keer als er een niew bericht komt is er een niewe li-->
-<!--            message is het bericht wat de gebruiker heeft ingevoerd-->
-            <% }) %>
-        </ul>
-
-        <h3>laat uw bericht achter</h3>
-
-
-        <form method="POST" action="/" class="chatbox"><!--action dat is de plek waar het naartoe moet in dit geval de zelfde pagina
-        en post is de methode wat er moet gebeuren dus dat je code verzend in de array-->
+        <form method="POST" action="/" class="chatbox">
+            <input type="hidden" name="id" value="<%= person.id %>">
             <label for="bericht">stuur je bericht
-                <input type="hidden" name="id" value="<%= person.id %>">
                 <textarea id="bericht" required name="bericht">
-        </textarea>
-<!--                ik heb name bericht genoemd want dit is noodzakelijk-->
+</textarea>
             </label>
             <button type="submit">verstuur je berichts</button>
 
         </form>
+        <h2 class="">hier zie je uw berichten</h2>
+        <ul class="output">
+            <% messages.forEach(message =>{ %>
+                <li><%= message %></li>
+            <% }) %>
+        </ul>
+
         <form method="POST" action="/person/<%= person.id %>">
             <% if (person.custom.like) { %>
                 <button type="submit" name="actie" value="vind-ik-niet-leuk">ik vind het niet leuk</button>
@@ -54,12 +42,16 @@
                 <button type="submit" name="actie" value="vind-ik-leuk">ik vind het leuk</button>
             <% } %>
         </form>
-
-
-
-
     </section>
 
-</main>
 
+</main>
 <%- include('./partials/foot') %>
+
+
+<!--todo er moet nog een tekst hier komen uw berichten in het midden komen
+-->
+
+<!--todo de zoekbutton moet nog gestyled worden-->
+
+<!-- todo -er is geen alternative afbeelding dus ti moet er ook nog in-->

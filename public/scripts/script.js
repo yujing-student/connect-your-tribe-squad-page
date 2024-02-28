@@ -1,9 +1,6 @@
-const click = () => {
-    const burger = document.querySelector(".hamburger");
-    const menu = document.querySelector(".menu");
+const burger = document.querySelector("header a")
+const menu = document.querySelector(".menu")
 
-    burger.addEventListener("click", () => {
-        menu.classList.toggle('show-menu');
-    });
-}
-click();
+burger.addEventListener("click", function() {
+    menu.classList.toggle('show-menu');
+});

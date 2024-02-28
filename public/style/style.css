@@ -1,269 +1,295 @@
 :root {
-    --color--main: #233142;
-    --color--secondary: #55F5E3FF;
-    --color--third: #46F17DFF;
-
-    --color--fourth: #e3e3e3;
+  --color--icons: rgb(0 0 0 / 50%);
+  --color--main: rgba(1, 193, 123, 1);
+  --color--fourth: #e3e3e3;
+  --color--white: #fff;
 }
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    line-height: 1.15;
-    font-family: "Karla", sans-serif;
+  line-height: 1.15;
+  font-family: "Karla", sans-serif;
+  background: linear-gradient(
+    16deg,
+    var(--color--fourth) 12%,
+    var(--color--main) 72%,
+    var(--color--fourth) 12%,
+    var(--color--main) 72%
+  );
+  background-size: 400% 400%;
 }
-
 
 header {
-    background-color: var(--color--main);
-    color: var(--color--fourth);
-    height: 4em;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 20;
+  width: 80%;
+  margin: auto;
+  border-bottom: solid var(--color--fourth);
+  /* background-color: var(--color--main); */
+  color: var(--color--fourth);
+  height: 4em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/*.menu {*/
-/*    width: 90%;*/
-/*    max-width: 20em;*/
-/*    background-color: #332659;*/
-/*    color: var(--color--fourth);*/
-/*    position: fixed;*/
-/*    top: 4em;*/
-/*    bottom: 0;*/
-/*    padding-left: 2em;*/
-
-/*}*/
-
-.zoekvak{
-    margin-top: 2em;
-    margin-left: 2em;
+a svg {
+  filter: invert(0%) sepia(84%) saturate(7437%) hue-rotate(328deg)
+    brightness(114%) contrast(89%);
+  width: 2em;
+  position: fixed;
+  right: 3em;
+  top: 0.5em;
+  z-index: 1;
 }
-.info-student{
-    margin-top: 2em;
-    margin-left: 2em;
-}
+
+/* index.ejs */
 .menu {
-    width: 90%;
-    max-width: 20em;
-    background-color: #332659;
-    color: var(--color--fourth);
-    position: fixed;
-    top: 4em;
-    bottom: 0;
-    padding-left: 2em;
-    transform: translateX(-90%);
-    transition: 0.5s;
-    border-radius: 0 50px 50px 0;
-    z-index: 3;
+  width: 90%;
+  max-width: 20em;
+  background-color: var(--color--icons);
+  color: var(--color--white);
+  position: fixed;
+  top: 4em;
+  bottom: 0;
+  transform: translateX(-90%);
+  transition: 0.5s;
+  padding: 0 1em;
+  border-radius: 0 50px 50px 0;
+  z-index: 3;
+  bottom: 4em;
 
+  & legend {
+    text-align: center;
+    padding: 1em 0 0 0;
+  }
+
+  p {
+    padding: 1em 0;
+  }
 }
-
-.show-menu {
-    transform: translateX(0%);
-
-}
-a svg { /*dit is hamburger menue*/
-    filter: invert(100%) sepia(3%) saturate(222%) hue-rotate(202deg) brightness(111%) contrast(78%);
-    width: 2em;
-
+.zoekvak{
+  justify-content: center;
+  display: flex;
+  align-items: center;
 }
 .submit-searchbutton{
-    width: 10em;
+  width: 10em;
+  justify-content: center;
+  display: flex;
+
 }
+/*dit is zoeken pagina*/
+.main-searchpage{
+  padding: 2em;
+}
+.show-menu {
+  transform: translateX(0%);
+}
+
+.filter,
+.sort {
+  display: contents;
+}
+
 form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5em;
-    font-size: 17px;
-}
-
-fieldset {
-    border: none;
-}
-
-legend {
-    font-size: 20px;
-    /*color: black;*/
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
 }
 
 form label input {
-    /*margin: 0 1em 0 0;*/
-    inset-inline: 1em;
+  margin: 0 1em 0 0;
 }
 
-/*dit is de 2de section met de kaartjes*/
 .students {
-    padding: 1em;
-    /*background-color: red;*/
+  margin-top: 1em;
+  display: grid;
+  gap: 1em;
+  align-items: center;
+  list-style: none;
+  justify-items: center;
 }
 
-/*hier zitten alle kaartjes in*/
-ul {
+.students li,
+div {
+  position: relative;
+  width: fit-content;
+  margin: auto;
+}
+
+.students li dl,
+div dl {
+  background-color: var(--color--fourth);
+  border-radius: 50px;
+  width: 24em;
+  /*height: 13em;*/
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  grid-template-rows: max-content max-content max-content 1fr;
+  padding: 1em 0.5em;
+  /*border: var();*/
+}
+
+.students li dl dt,
+div dl dt {
+  color: var(--color--main);
+  border-right: solid var(--color--main) 1px;
+}
+
+.students li dl dd,
+div dl dd {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.students li dl :is(dt, dd),
+div dl :is(dt, dd) {
+  padding: 0.25em 0.5em;
+}
+
+.students img,
+div img {
+  height: 60px;
+  width: 60px;
+  object-fit: cover;
+  position: absolute;
+  top: 1em;
+  right: 2em;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #555;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #f5f5f5;
+}
+
+/* person.ejs */
+.MPerson {
+  margin: auto;
+}
+
+.MPerson a{
+  background-color: var(--color--main);
+  color: var(--color--white);
+  border-radius: 50px;
+  border-color: black;
+  text-decoration: none;
+
+}
+
+.personcard {
+  /* scale: 2; */
+}
+
+
+.send {
+  margin-top: 2em;
+}
+
+.chatbox {
+  background-color: var(--color--fourth);
+  border-radius: 50px;
+  width: 24em;
+  height: 13em;
+  display: flex;
+  /* grid-template-columns: max-content 1fr; */
+  /* grid-template-rows: max-content max-content max-content 1fr; */
+  padding: 1em 0.5em;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+label[for="bericht"] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 2em;
+  color: var(--color--main);
+  text-decoration: underline;
+}
+
+label[for="bericht"] textarea{
+  border-radius: 10px;
+
+}
+
+.send button{
+  background-color: var(--color--main);
+  color: var(--color--white);
+  padding: 0.5em;
+  border-radius: 50px;
+}
+
+
+.output{
+  margin-top: 2em;
+}
+
+.output li{
+  background-color: var(--color--fourth);
+  border-radius: 50px;
+  width: 24em;
+  height: 13em;
+  display: flex;
+  /* grid-template-columns: max-content 1fr; */
+  /* grid-template-rows: max-content max-content max-content 1fr; */
+  padding: 1em 0.5em;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  margin-top: 2em;
+}
+
+@media (min-width: 50em) {
+  header {
+    justify-content: center;
+  }
+
+  .MIndex {
     display: grid;
-    gap: 1em;
-    list-style: none;
-    justify-items: center;
+    grid-template-rows: auto auto;
+  }
+  .menu {
+    width: 20%;
+    color: var(--color--fourth);
+    position: fixed;
+    bottom: 1em;
+
+    & h2 {
+      text-align: center;
+    }
+  }
+
+  .students {
+    width: 100%;
+  }
+
+  .students {
+    grid-template-columns: repeat(2, max-content);
+    justify-content: center;
+  }
 }
 
-li { /*hier word de indleing bepaald van de inhoud van de kaartjes dus de info en de foto*/
-    display: grid;
-    grid-template-columns: 14em 1fr;
-    grid-template-rows: auto;
-    background-color: var(--color--third);
-    font-size: 20px;
-    padding: 1em;
-    gap: 1em;
-    inset-inline: 1em;
-    /*    https://css-tricks.com/almanac/properties/i/inset/ in wiki todo voor niewuste ontwikkelingen*/
-
-}
-
-/* hier zit de informaite in over de persoon*/
-dl {
-    display: grid;
-    grid-template-columns: 6em auto;
-    grid-template-rows: auto auto auto;
-    /*gap: 1em;*/
-    column-gap: 1em;
-
-}
-
-dt /*dit is de 1ste rij naam achternaam squad de 2de rij heeft geen specifieke opmaak*/
-{
-    grid-column: 1;
-    border-right: #e3e3e3 1px solid;
-
-}
-
-/*dit is de afbeelding*/
-img {
-    width: 3em;
-}
-
-@media (width <= 400px) {/*dit is voor hele kleine schermen*/
-
-    li {
-        display: grid;
-        grid-template-columns: auto;
-
-    }
-
-    dl {
-        display: grid;
-        grid-template-columns: auto;
-        gap: 1em;
-    }
-
-    dt /*dit is de 1ste rij naam achternaam squad de 2de rij heeft geen specifieke opmaak*/
-    {
-        /*grid-column: 1;*/
-        border-bottom: #e3e3e3 1px solid;
-        border-right: none;
-        gap: 1em;
-
-    }
-}
-
-@media (width <= 700px) {
-    /*hier zitten de mobiele elementen in die allen op mobiel weergegeven mag worden*/
-
-
-
-    .menu {
-        width: 90%;
-        max-width: 20em;
-        background-color: #332659;
-        color: var(--color--fourth);
-        position: fixed;
-        top: 4em;
-        bottom: 0;
-        padding-left: 2em;
-        transform: translateX(-90%);
-        transition: 0.5s;
-        border-radius: 0 50px 50px 0;
-        z-index: 3;
-
-    }
-
-
-    .show-menu {
-        transform: translateX(0%);
-
-    }
-
-
-}
-
-/*tablet*/
-@media (width >= 700px) {
-    main {
-        display: grid;
-        grid-template-columns: 15em 3fr; /* Adjust this ratio to suit your needs */
-        grid-template-rows: auto auto auto auto; /* Adjust this ratio to suit your needs */
-
-
-    }
-
-    .filter {
-        display: none;
-    }
-    header{
-        justify-content: center;
-    }
-
-    .menu {
-
-        max-width: 14em;
-        top: 4em;
-        bottom: 0;
-        background-color: #332659;
-        color: var(--color--fourth);
-        padding: 2em;
-        /*display: grid;*/
-
-
-        grid-column: 1;
-        grid-row-start: 1;
-        grid-row-end: 4;
-    }
-    .info-student{
-        grid-column: 2;
-    }
-    .zoekvak{
-        display: grid;
-        grid-column:2;
-    }
-
-    .students {
-        grid-column-start: 1;
-        grid-column-end: 3;
-
-    }
-}
-
-@media (width >= 1100px) {
-
-    ul {
-        /*display: grid;*/
-        grid-template-columns: auto auto;
-    }
-
-
-}
-
-@media (width >= 1600px) {
-
-    ul {
-        grid-template-columns: auto auto auto;
-        gap: 1em;
-    }
+@media (width > 75.625em) {
+  .students {
+    grid-template-columns: repeat(3, max-content);
+  }
 }

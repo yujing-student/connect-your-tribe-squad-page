@@ -1,92 +1,80 @@
 <%- include('./partials/head') %>
-
-<main>
-
-
-    <form action="squad/" class="menu">
-        <fieldset>
-            <legend>klas</legend>
-
-            <label>
-                <input type="checkbox" name="1D" value="" />
-            </label>
-            <label for="1D">1D</label><br />
-            <label>
-                <input type="checkbox" name="1E" value="" />
-            </label>
-            <label for="1E">1E</label><br />
-
-            <label>
-                <input type="checkbox" name="1F" value="" />
-            </label>
-            <label for="1F">1F</label><br />
-
-        </fieldset>
-        <fieldset>
-            <legend>geslacht</legend>
-
-            <input type="radio" id="man" name="man" value="" />
-            <label for="man">man</label><br />
-
-            <input type="radio" id="Z-A" name="Z-A" value="" />
-            <label for="Z-A">vrouw</label><br />
-
-        </fieldset>
-        <fieldset>
-            <legend>naam</legend>
-
-            <input type="radio" id="A-Z" name="A-Z" value="K" />
-            <label for="A-Z">A-Z</label><br />
-
-            <input type="radio" id="Z-A" name="Z-A" value="S" />
-            <label for="Z-A">Z-A</label><br />
-
-        </fieldset>
-        <fieldset>
-            <legend>Hoog naar laag</legend>
-
-            <label>
-                <input type="radio" name="hoog naar laag" value="K" />
-            </label>
-            <label for="hoog naar laag">hoog naar laag</label><br />
-
-            <label>
-                <input type="radio"  name="laag naar hoog" value="S" />
-            </label>
-            <label for="laag naar hoog">laag naar hoog</label><br />
-
-        </fieldset>
-        <button type="submit">filteren</button>
-    </form>
-
-
+<main class="MIndex">
     <!--    <section>-->
+
+    <form action="" class="menu">
+        <fieldset class="filter">
+            <legend>Filter</legend>
+            <p>klas</p>
+
+            <label>
+                <input type="checkbox" />1D
+            </label>
+
+            <label>
+                <input type="checkbox" />1E
+            </label>
+
+            <label>
+                <input type="checkbox" />1F
+            </label>
+
+            <p>geslacht</p>
+            <label>
+                <input type="checkbox" />Man
+            </label>
+
+            <label>
+                <input type="checkbox" />Vrouw
+            </label>
+        </fieldset>
+
+        <fieldset class="sort">
+            <legend>Sorteren</legend>
+            <p>Naam</p>
+
+            <label>
+                <input type="radio" />A-Z
+            </label>
+
+            <label>
+                <input type="radio" />Z-A
+            </label>
+
+            <p>ID</p>
+            <label>
+                <input type="radio" />hoog-laag
+            </label>
+
+            <label>
+                <input type="radio" />laag-hoog
+            </label>
+        </fieldset>
+    </form>
     <form action="/zoeken" method="get" class="zoekvak">
-        <label for="id">geef je eigen id op die in de database staat
-            <input type="search" name="id"><!--ik zeg nu ga zoeken en als name geef ik mee dat het id is en dat daar op gezocht word-->
+        <label for="id" class="">geef je eigen id op die in de database staat
+            <input type="search" name="id" class=""><!--ik zeg nu ga zoeken en als name geef ik mee dat het id is en dat daar op gezocht word-->
         </label>
-        <button type="submit" class="submit-searchbutton">zoeken</button>
+        <button type="submit" class="submit-searchbutton ">zoeken</button>
     </form>
     <ul class="students">
-        <% persons.forEach(person => { %><!--dit is de foreach loop waarin geloopt word door de fetch api dus iedereen die in de database staat-->
-            <li >
+        <% persons.forEach(person => { %>
+            <li>
                 <dl>
                     <dt>Naam</dt>
                     <dd><a href="./person/<%= person.id %>"><%= person.name %></a></dd>
-                    <dt>Achternaam </dt>
+                    <dt>Achternaam</dt>
                     <dd><%= person.surname %></dd>
                     <dt>Squad</dt>
                     <dd><%= person.squad_id %></dd>
-                    <dt>id</dt>
-                    <dd><%= person.id %></dd>
+
                 </dl>
                 <img src="<%= (person.avatar == '') ? 'images/placeholder.jpg' : person.avatar %>"
                      onerror="this.src='images/alternative.jpg'">
             </li>
         <% }) %>
     </ul>
+    </div>
 
-    <!--    </section>-->
 </main>
-
 <%- include('./partials/foot') %>
