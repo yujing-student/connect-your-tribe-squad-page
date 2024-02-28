@@ -8,7 +8,9 @@ import fetchJson from './helpers/fetch-json.js'
 const squadData = await fetchJson('https://fdnd.directus.app/items/squad')
 const everyone = await fetchJson('https://fdnd.directus.app/items/person/')
 const klasDNaam = 'https://fdnd.directus.app/items/person/?filter={%22squad_id%22:3}&sort=name'
-const messages = [{id:everyone.data.person,msg:messages}]/*dit is de lege array en hhierdoor heb je dat als je een bericht verstuurt naar 1 persoon dat die bij iedereen zichtbaar is*/
+// const messages = [{id:everyone.data.person,msg:messages}]/*dit is de lege array en hhierdoor heb je dat als je een bericht verstuurt naar 1 persoon
+// dat die bij iedereen zichtbaar is*/
+const messages = [];
 // gebruik maken van een geneste vanwege het filteren van de messages zodat het per persoon een eigen bericht
 // en gebruik maken van de array.filter op person
 // dit wil ik gebruiken voor het werkend maken van de chebcoxes
@@ -52,9 +54,12 @@ app.get('/', async function (request, response) {
         // res.json({data: filteredStudent})
         // res.render('index', );
         response.render('index', {
-            datastudent: filteredStudent, dataD: filteredDataSquadD,
-            dataf: filteredDataSquadF, dataE: filteredDataSquadE,
-            squads: squadData.data, data: everything,
+            datastudent: filteredStudent,
+            dataD: filteredDataSquadD,
+            dataf: filteredDataSquadF,
+            dataE: filteredDataSquadE,
+            squads: squadData.data,
+            data: everything,
             persons: everyone.data
         });
         // https://dev.to/callmefarad/simple-query-search-in-node-express-api-4c0e
@@ -69,7 +74,7 @@ app.post('/', function (request, response) {
     // Er is nog geen afhandeling van POST, redirect naar GET op /
     messages.push(request.body.bericht)/*voeg het bericht wvan de gerrbuiker toe aan de array*/
     // bericht moet je gebruiken want je hebt name gebruikt bij je form
-    const person = everyone.data;
+
     // gebruik maken van person zodat je de data kan oproepen
     response.redirect('/person/' + request.body.id);/*het bericht moet weergegeven worden op deze pagina*/
 
@@ -83,22 +88,22 @@ app.get('/person/:id', function (request, response) {
     fetchJson('https://fdnd.directus.app/items/person/' + request.params.id)
         .then((apiData) => {
 
-            if (apiData.data) {/*als data voer dan dit uit */
+            if (apiData.data) {/*als data voer dan dit uit en dit moet hier staan vanwege de error name not found in person.ejs  */
 
                 try {/*gebruik maken van een try en catch zodat de errror gelogt word*/
                     apiData.data.custom = JSON.parse(apiData.data.custom)
                 } catch (e) {
                     console.log(e)
                 }
-                let info = apiData.data;
+                // let info = apiData.data;
                 // info gebruiken om die te linken aan apidata.data
-                response.render('person', {person: info, squads: squadData.data, messages: messages});
-            //     messages moet uitgevoerd worden met de meegegeven array
+                response.render('person', {person: apiData.data, squads: squadData.data, messages: messages});
+                //     messages moet uitgevoerd worden met de meegegeven array
 
 
             } else {
                 console.log('No data found for person with id: ' + request.params.id);
-            //     laat de error zien als de data al niet gevonden word
+                //     laat de error zien als de data al niet gevonden word
             }
         })
         .catch((error) => {
@@ -118,7 +123,7 @@ app.post('/person/:id/', function (request, response) {
             try {
                 apiData.data.custom = JSON.parse(apiData.data.custom)
             } catch (e) {
-                apiData.data.custom = {}
+                apiData.data.custom = {}/*dit moet leeg zijn zodat je error hiernaartoe kan*/
             }
 
 
@@ -138,18 +143,15 @@ app.post('/person/:id/', function (request, response) {
                 // Voeg een nieuwe message toe voor deze persoon, aan de hand van het bericht uit het formulier
                 apiData.data.custom.messages.push(request.body.message)
 
-            }
-            else if (request.body.actie == 'vind-ik-leuk') {
+            } else if (request.body.actie == 'vind-ik-leuk') {
                 // als hier op geklikt is dan is dit true
                 apiData.data.custom.like = true
-                console.log('er is geklikt op vind ik leuk'+ apiData.data.custom.like);
-            }
-
-            else if (request.body.actie == 'vind-ik-niet-leuk') {
+                console.log('er is geklikt op vind ik leuk' + apiData.data.custom.like);
+            } else if (request.body.actie == 'vind-ik-niet-leuk') {
                 // als hier op geklikt is dan is dit true
 
                 apiData.data.custom.like = false
-                console.log('er is een 2de klik op vind ik leuk'+ apiData.data.custom.like);
+                console.log('er is een 2de klik op vind ik leuk' + apiData.data.custom.like);
 
             }
             // Stap 3: Sla de data op in de API
@@ -160,13 +162,13 @@ app.post('/person/:id/', function (request, response) {
                 method: 'PATCH',/*hier zeg je verander de data*/
                 body: JSON.stringify({
                     custom: apiData.data.custom
-                //     https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
+                    //     https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
                 }),
-                headers: {/*hier word aangegeven dat het om een json gaat*/
+                headers: {/*hier word aangegeven dat het om een json gaat en charset dat zijn tekens van hartje of tekst zoals hallo*/
                     'Content-type': 'application/json; charset=UTF-8'
                 }
             }).then((patchresponse) => {
-                // voer dit uit
+                // voer dit uit als de fetchsjon successvol is
                 console.log(patchresponse);
                 response.redirect(303, '/person/' + request.params.id)
             })
@@ -175,7 +177,7 @@ app.post('/person/:id/', function (request, response) {
         })
 })
 
-
+// maak de route zoeken aan waarin je een extra pagina toeveogd speciaal voor het zoeken
 app.get("/zoeken", async (req, res) => {
     //     // data.data.custom = JSON.parse(data.data.custom);
     // in de request is de url /zoeken?id ingegeven nummer
