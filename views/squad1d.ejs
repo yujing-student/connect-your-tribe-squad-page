@@ -51,19 +51,20 @@
             </label>
         </fieldset>
 
-        <button type="submit" class="submit-searchbutton">submit</button>
+        <button type="submit" class="submit-searchbutton styling-filterbutton" >filter</button>
     </form>
     <form action="/zoeken" method="get" class="zoekvak">
         <label for="id" class="">geef je eigen id op die in de database staat
             <input type="search" name="id" class=""><!--ik zeg nu ga zoeken en als name geef ik mee dat het id is en dat daar op gezocht word-->
         </label>
-        <button type="submit" class="submit-searchbutton ">zoeken</button>
+        <button type="submit" class="submit-searchbutton styling-filterbutton ">zoeken</button>
     </form>
 
-    <div class="buttons">
-        <button onclick="window.location.href='/squad/1d'" class="submit-searchbutton">Go to Squad 1d</button>
-        <button onclick="window.location.href='/squad/1e'" class="submit-searchbutton">Go to Squad 2d</button>
-        <button onclick="window.location.href='/squad/1f'" class="submit-searchbutton">Go to Squad 3d</button>
+    <div class="buttons-list">
+        <p>gebruik de knoppen om naar een klas te gaan en de zoekfunctie om jezelf op te zoeken met je id nummer</p>
+        <button onclick="window.location.href='/squad/1d'" class="submit-searchbutton styling-filterbutton"> Squad 1d</button>
+        <button onclick="window.location.href='/squad/1e'" class="submit-searchbutton styling-filterbutton"> Squad 1e</button>
+        <button onclick="window.location.href='/squad/1f'" class="submit-searchbutton styling-filterbutton">  Squad 1f</button>
     </div>
 
 
@@ -81,10 +82,12 @@
                     <dd><%= person.surname %></dd>
                     <dt>Squad</dt>
                     <dd><%= person.squad_id %></dd>
+                    <dt>id nummer</dt>
+                    <dd><%= person.id %></dd>
 
                 </dl>
-                <img src="<%= (person.avatar == '') ? 'images/placeholder.jpg' : person.avatar %>"
-                     onerror="this.src='images/alternative.jpg'">
+                <img src="<%= (person.avatar == '') ? '/images/placeholder.jpg' : person.avatar %>"
+                     onerror="this.src='/images/alternative.jpg'">
             </li>
         <% }) %>
     </ul>

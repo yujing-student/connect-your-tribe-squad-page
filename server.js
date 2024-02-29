@@ -104,7 +104,6 @@ app.get('/', async function (request, response) {
 app.get('/squad/:id', (req, res) => {
     let id = req.params.id;//dit is noodzkaleijk voor chekcne van het id
     if (id === '1d') {
-        // als de href lcoation 1d is voer dit dan uit
         res.render('squad1d', {
             dataD: filteredDataSquadD,
             dataf: filteredDataSquadF,
@@ -114,7 +113,6 @@ app.get('/squad/:id', (req, res) => {
             persons: everyone.data/*hier zeg ik dat iedereen getoond moet worden*/
         });
     } else if (id === '1e') {
-
         res.render('squadE', {
             dataD: filteredDataSquadD,
             dataf: filteredDataSquadF,
