@@ -113,7 +113,7 @@ app.get('/squad/:id', (request, response) => {
         // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Strict_equality
         //onderstaande uitvoeren
         response.render('squad1d', {
-            dataD: filteredDataSquadD,
+            dataD: filteredDataSquadD,klasDNaam,
             dataf: filteredDataSquadF,
             dataE: filteredDataSquadE,
             squads: squadData.data,
