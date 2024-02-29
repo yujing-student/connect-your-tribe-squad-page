@@ -101,6 +101,39 @@ app.get('/', async function (request, response) {
     }
 })
 
+app.get('/squad/:id', (req, res) => {
+    let id = req.params.id;
+    if (id === '1d') {
+        res.render('squad1d', {
+            dataD: filteredDataSquadD,
+            dataf: filteredDataSquadF,
+            dataE: filteredDataSquadE,
+            squads: squadData.data,
+            data: everything,
+            persons: everyone.data/*hier zeg ik dat iedereen getoond moet worden*/
+        });
+    } else if (id === '1e') {
+        res.render('squadE', {
+            dataD: filteredDataSquadD,
+            dataf: filteredDataSquadF,
+            dataE: filteredDataSquadE,
+            squads: squadData.data,
+            data: everything,
+            persons: everyone.data/*hier zeg ik dat iedereen getoond moet worden*/
+        });
+    } else if (id === '1f') {
+        res.render('squadF', {
+            dataD: filteredDataSquadD,
+            dataf: filteredDataSquadF,
+            dataE: filteredDataSquadE,
+            squads: squadData.data,
+            data: everything,
+            persons: everyone.data/*hier zeg ik dat iedereen getoond moet worden*/
+        });
+    } else {
+        res.send('Invalid squad ID');
+    }
+});
 // Maak een POST route voor person
 app.post('/', function (request, response) {
     // Er is nog geen afhandeling van POST, redirect naar GET op /

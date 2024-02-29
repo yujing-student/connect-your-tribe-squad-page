@@ -2,7 +2,7 @@
 <main class="MIndex">
     <!--    <section>-->
 
-    <form action="" class="menu">
+    <form action="/" class="menu">
         <fieldset class="filter">
             <legend>Filter</legend>
             <p>klas</p>
@@ -50,20 +50,29 @@
                 <input type="radio" />laag-hoog
             </label>
         </fieldset>
-        <button type="submit" class="submit-searchbutton styling-filterbutton" >filter</button>
+
+        <button type="submit" class="submit-searchbutton">submit</button>
     </form>
     <form action="/zoeken" method="get" class="zoekvak">
         <label for="id" class="">geef je eigen id op die in de database staat
             <input type="search" name="id" class=""><!--ik zeg nu ga zoeken en als name geef ik mee dat het id is en dat daar op gezocht word-->
         </label>
-        <button type="submit" class="submit-searchbutton styling-filterbutton ">zoeken</button>
+        <button type="submit" class="submit-searchbutton ">zoeken</button>
     </form>
-<!--    gebruk maken van dit zodat je geen foreach loop hoeft te gebruiken-->
-    <button onclick="window.location.href='/squad/1d'">Go to Squad 1d</button>
-    <button onclick="window.location.href='/squad/1e'">Go to Squad 2d</button>
-    <button onclick="window.location.href='/squad/1f'">Go to Squad 3d</button>
+
+    <div class="buttons">
+        <button onclick="window.location.href='/squad/1d'" class="submit-searchbutton">Go to Squad 1d</button>
+        <button onclick="window.location.href='/squad/1e'" class="submit-searchbutton">Go to Squad 2d</button>
+        <button onclick="window.location.href='/squad/1f'" class="submit-searchbutton">Go to Squad 3d</button>
+    </div>
+
+
+
+
+
+
     <ul class="students">
-        <% persons.forEach(person => { %>
+        <% dataE.forEach(person => { %>
             <li>
                 <dl>
                     <dt>Naam</dt>
@@ -79,7 +88,6 @@
             </li>
         <% }) %>
     </ul>
-    </div>
 
 </main>
 <%- include('./partials/foot') %>
