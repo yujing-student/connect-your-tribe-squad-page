@@ -8,7 +8,7 @@ import fetchJson from './helpers/fetch-json.js'
 const squadData = await fetchJson('https://fdnd.directus.app/items/squad')
 const everyone = await fetchJson('https://fdnd.directus.app/items/person/')
 const klasDNaam = 'https://fdnd.directus.app/items/person/?filter={%22squad_id%22:3}&sort=name'
-// const messages = [{id:everyone.data.person,msg:messages}]/*dit is de lege array en hhierdoor heb je dat als je een bericht verstuurt naar 1 persoon dat die bij iedereen zichtbaar is*/
+// const messages = [{id:everyone.data.person,msg:messages}]/*dit is de geneste array en die moet nog gebruikt gaan worden*/
 const messages = []/*dit is de lege array en hhierdoor heb je dat als je een bericht verstuurt naar 1 persoon dat die bij iedereen zichtbaar is*/
 // gebruik maken van een geneste vanwege het filteren van de messages zodat het per persoon een eigen bericht
 // en gebruik maken van de array.filter op person
@@ -52,7 +52,8 @@ app.get('/', async function (request, response) {
     // Haal alle personen uit de WHOIS API op
     // hier werkt de zoekfunite niet helemaal zoals gehoopt scroll naar het einde van de pagina
     try {
-        const userQuery = await request.query; /*dit is het id wat de gebruiker ingeeft bij het zoekvak*/
+        const userQuery = await request.query; /*dit is het id wat de gebruiker ingeeft bij het zoekvak en die word opgelsagen in een vairable en qeury gebruik je omdat dit een zoekopdracht is*/
+        // dit is een queryparameter   https://medium.com/@aidana1529/understanding-the-difference-between-req-params-req-body-and-req-query-e9cf01fc3150
 
         const filteredStudent = await everyone.data.filter((informationStudent) => { /*dit is een array met daarin de filter waarin de gegevens van een specifieke student staan*/
 
@@ -107,7 +108,7 @@ app.post('/', function (request, response) {
     // bericht moet je gebruiken want je hebt name gebruikt bij je form
 
     // gebruik maken van person zodat je de data kan oproepen
-    response.redirect('/person/' + request.body.id);/*het bericht moet weergegeven worden op deze pagina*/
+    response.redirect('/person/' + request.body.id);/*het bericht moet weergegeven worden op deze pagina daarom is er een request*/
 
 
 })
@@ -117,7 +118,9 @@ app.post('/', function (request, response) {
 
 app.get('/person/:id', function (request, response) {
     fetchJson('https://fdnd.directus.app/items/person/' + request.params.id)
+
         .then((apiData) => {
+            // request.params.id gebruik je zodat je de exacte student kan weergeven dit si een routeparmater naar de route van die persoon
 
             if (apiData.data) {/*als data voer dan dit uit */
 
@@ -153,6 +156,7 @@ app.post('/person/:id/', function (request, response) {
             try {
                 apiData.data.custom = JSON.parse(apiData.data.custom)
             } catch (e) {
+                // de tekst van de error word in de lege {} weergeven dit is zo omdat de informatie geparst word zodat je de error kan zien
                 apiData.data.custom = {}
             }
 
@@ -195,6 +199,7 @@ app.post('/person/:id/', function (request, response) {
                 method: 'PATCH',/*hier zeg je verander de data*/
                 body: JSON.stringify({
                     custom: apiData.data.custom
+
                     //     https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
                 }),
                 headers: {/*hier word aangegeven dat het om een json gaat*/
@@ -211,6 +216,7 @@ app.post('/person/:id/', function (request, response) {
 })
 
 
+// in deze code heb ik ebwust gekozen voor asyinc en await omdat de fetchjson een promise is
 app.get("/zoeken", async (request, response) => {
     //     // data.data.custom = JSON.parse(data.data.custom);
     // in de request is de url /zoeken?id ingegeven nummer
