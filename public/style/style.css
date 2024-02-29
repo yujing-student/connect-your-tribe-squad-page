@@ -48,7 +48,7 @@ a svg {
 
 /* index.ejs */
 .menu {
-  width: 90%;
+  width: 53%;
   max-width: 20em;
   background-color: var(--color--icons);
   color: var(--color--white);
@@ -60,6 +60,7 @@ a svg {
   padding: 0 2em;
   border-radius: 0 50px 50px 0;
   z-index: 3;
+  height: 43em;
 
   & legend {
     text-align: center;
@@ -314,4 +315,11 @@ label[for="bericht"] textarea{
   .students {
     grid-template-columns: repeat(3, max-content);
   }
+}
+
+.space-li-elements{
+ margin-bottom: 1em;
+}
+.space-form-back{
+  margin-top: 2em;
 }
