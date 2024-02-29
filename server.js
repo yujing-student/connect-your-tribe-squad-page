@@ -48,14 +48,19 @@ app.use(express.static('public'))
 app.use(express.urlencoded({extended: true}));
 
 // Maak een GET route voor de index
+// bij een async functie word gebruik gemaakt van een promise en dit kan slagen dan gebruik je .then
+// en dit kan falen en hiervoor gebruik je een catch om dit op te vangen
+
+//async heb je nodig voor je http afhandeling van je request en response en ik maak gebruik van een try and catch voor
+// het opvangen van errors en het afhandelen van errors
 app.get('/', async function (request, response) {
     // Haal alle personen uit de WHOIS API op
     // hier werkt de zoekfunite niet helemaal zoals gehoopt scroll naar het einde van de pagina
     try {
-        const userQuery = await request.query; /*dit is het id wat de gebruiker ingeeft bij het zoekvak en die word opgelsagen in een vairable en qeury gebruik je omdat dit een zoekopdracht is*/
+        const userQuery =  request.query; /*dit is het id wat de gebruiker ingeeft bij het zoekvak en die word opgelsagen in een vairable en qeury gebruik je omdat dit een zoekopdracht is*/
         // dit is een queryparameter   https://medium.com/@aidana1529/understanding-the-difference-between-req-params-req-body-and-req-query-e9cf01fc3150
 
-        const filteredStudent = await everyone.data.filter((informationStudent) => { /*dit is een array met daarin de filter waarin de gegevens van een specifieke student staan*/
+        const filteredStudent =  everyone.data.filter((informationStudent) => { /*dit is een array met daarin de filter waarin de gegevens van een specifieke student staan*/
 
             let true_or_false;/*deze waarden is leeg omdat dit true of false moet returen */
             let isValid = true;
@@ -65,7 +70,8 @@ app.get('/', async function (request, response) {
                 // console.log(`dit is de info dus de opgehaalde informatie van die persoon ${JSON.stringify(informationStudent)}`)
 
                 let correctinformation = informationStudent[key] == userQuery[key];//check of dit klopt zo ja dan is correct information true
-
+                // maak gebruik van == omdat de data in de array inforamtion student als "nummer" staat en je typt in je userquery nummer 9
+                // zonder "" en als je === maakt dan returnt die false omdat in de database het een string is en je userquery word ogpelsagen als number
                 true_or_false = isValid && correctinformation;/*is de ingegeveninformatie juist zo ja return*/
 
                 // if(true_or_false == false){deze code staat in comment vanwege het debuggen
@@ -100,11 +106,13 @@ app.get('/', async function (request, response) {
         response.send(err.message)
     }
 })
-
-app.get('/squad/:id', (req, res) => {
-    let id = req.params.id;//dit is noodzkaleijk voor chekcne van het id
-    if (id === '1d') {
-        res.render('squad1d', {
+// maak de 2de route aan naar de squad id page ook wel een 2de pagina
+app.get('/squad/:id', (request, response) => {
+    let id = request.params.id;//dit is noodzkaleijk voor het opslaan van de route voor de url
+    if (id === '1d'){//chekcen of dit truee is
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Strict_equality
+        //onderstaande uitvoeren
+        response.render('squad1d', {
             dataD: filteredDataSquadD,
             dataf: filteredDataSquadF,
             dataE: filteredDataSquadE,
@@ -113,7 +121,7 @@ app.get('/squad/:id', (req, res) => {
             persons: everyone.data/*hier zeg ik dat iedereen getoond moet worden*/
         });
     } else if (id === '1e') {
-        res.render('squadE', {
+        response.render('squadE', {
             dataD: filteredDataSquadD,
             dataf: filteredDataSquadF,
             dataE: filteredDataSquadE,
@@ -122,7 +130,7 @@ app.get('/squad/:id', (req, res) => {
             persons: everyone.data/*hier zeg ik dat iedereen getoond moet worden*/
         });
     } else if (id === '1f') {
-        res.render('squadF', {
+        response.render('squadF', {
             dataD: filteredDataSquadD,
             dataf: filteredDataSquadF,
             dataE: filteredDataSquadE,
@@ -131,7 +139,8 @@ app.get('/squad/:id', (req, res) => {
             persons: everyone.data/*hier zeg ik dat iedereen getoond moet worden*/
         });
     } else {
-        res.send('Invalid squad ID');
+        // als dit niet bestaat dan dit weerrgaven in de body
+        response.send('Invalid squad ID');
     }
 });
 // Maak een POST route voor person
@@ -228,7 +237,10 @@ app.post('/person/:id/', function (request, response) {
 
             // Voeg de nieuwe lijst messages toe in de WHOIS API,
             // via een PATCH request
-            fetchJson('https://fdnd.directus.app/items/person/' + request.params.id, {/*dit is de person/9 bijvoorbeeld*/
+            fetchJson('https://fdnd.directus.app/items/person/' + request.params.id,
+
+                {/*dit is de person/9 bijvoorbeeld*/
+                //     de body is de payload omdat daar de data aangepast word voor in de server
                 method: 'PATCH',/*hier zeg je verander de data*/
                 body: JSON.stringify({
                     custom: apiData.data.custom
