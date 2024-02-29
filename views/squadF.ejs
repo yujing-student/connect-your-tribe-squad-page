@@ -65,6 +65,7 @@
         <button onclick="window.location.href='/squad/1d'" class="submit-searchbutton styling-filterbutton"> Squad 1d</button>
         <button onclick="window.location.href='/squad/1e'" class="submit-searchbutton styling-filterbutton"> Squad 1e</button>
         <button onclick="window.location.href='/squad/1f'" class="submit-searchbutton styling-filterbutton">  Squad 1f</button>
+        <a href="/">back</a>
     </div>
 
 
@@ -77,7 +78,7 @@
             <li>
                 <dl>
                     <dt>Naam</dt>
-                    <dd><a href="./person/<%= person.id %>"><%= person.name %></a></dd>
+                    <dd><a href="/person/<%= person.id %>"><%= person.name %></a></dd>
                     <dt>Achternaam</dt>
                     <dd><%= person.surname %></dd>
                     <dt>Squad</dt>

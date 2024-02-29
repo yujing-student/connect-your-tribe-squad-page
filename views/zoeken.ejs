@@ -1,0 +1,55 @@
+<%- include('./partials/head') %>
+<main class="main-searchpage">
+
+    <button>
+        <a href="/" class="MPerson styling-filterbutton submit-searchbutton">Back</a>
+    </button>
+    <form action="/zoeken" method="get" class="space-form-back">
+        <label>geef je eigen id op die in de database staat
+            <input type="search" name="id" required>
+        </label>
+        <button type="submit" class="submit-searchbutton styling-filterbutton">Submit</button>
+    </form>
+
+
+
+    <% datastudent.forEach(function(person)
+
+    {
+    %>
+    <ul>
+
+
+        <li class="">student id:
+            <%= person.id %> naam: <a href="./person/<%= person.id %>"><%= person.name %>
+                <%= person.prefix %>
+                <%= person.surname %>
+            </a>
+
+        </li>
+    </ul>
+
+    <% }); %>
+
+    <section class="everyone-show">
+        <h2>everyone</h2>
+        <ul>
+        <% data.forEach(function(person)
+
+        {
+        %>
+
+
+
+            <li class="space-li-elements">id number: <%= person.id %>
+                naam: <%= person.name %>
+                <%= person.prefix %>
+                <%= person.surname %>
+            </li>
+
+
+        <% }); %>
+        </ul>
+    </section>
+</main>
+<%- include('./partials/foot') %>

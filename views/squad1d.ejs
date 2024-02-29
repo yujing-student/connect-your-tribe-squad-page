@@ -61,10 +61,12 @@
     </form>
 
     <div class="buttons-list">
+<!--        onlcick gebruiken zodat ik geen foreach loop nodig heb om naar een bepaalde url te gaan-->
         <p>gebruik de knoppen om naar een klas te gaan en de zoekfunctie om jezelf op te zoeken met je id nummer</p>
         <button onclick="window.location.href='/squad/1d'" class="submit-searchbutton styling-filterbutton"> Squad 1d</button>
         <button onclick="window.location.href='/squad/1e'" class="submit-searchbutton styling-filterbutton"> Squad 1e</button>
         <button onclick="window.location.href='/squad/1f'" class="submit-searchbutton styling-filterbutton">  Squad 1f</button>
+        <a href="/">back</a>
     </div>
 
 
@@ -73,24 +75,24 @@
 
 
     <ul class="students">
-        <% dataD.forEach(person => { %>
+        <% dataD.forEach( person => { %>
             <li>
                 <dl>
                     <dt>Naam</dt>
-                    <dd><a href="./person/<%= person.id %>"><%= person.name %></a></dd>
+                    <dd><a href="/person/<%= person.id %>"><%= person.name %></a></dd>
                     <dt>Achternaam</dt>
                     <dd><%= person.surname %></dd>
                     <dt>Squad</dt>
                     <dd><%= person.squad_id %></dd>
                     <dt>id nummer</dt>
                     <dd><%= person.id %></dd>
-
                 </dl>
                 <img src="<%= (person.avatar == '') ? '/images/placeholder.jpg' : person.avatar %>"
                      onerror="this.src='/images/alternative.jpg'">
             </li>
         <% }) %>
     </ul>
+
 
 </main>
 <%- include('./partials/foot') %>

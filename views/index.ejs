@@ -52,7 +52,8 @@
         </fieldset>
         <button type="submit" class="submit-searchbutton styling-filterbutton" >filter</button>
     </form>
-    <form action="/" method="get" class="zoekvak">
+
+    <form action="/zoeken" method="get" class="zoekvak">
         <label for="id" class="">geef je eigen id op die in de database staat
             <input type="search" name="id" class=""><!--ik zeg nu ga zoeken en als name geef ik mee dat het id is en dat daar op gezocht word-->
         </label>
@@ -61,24 +62,6 @@
 
 <!--    gebruk maken van dit zodat je geen foreach loop hoeft te gebruiken-->
     <div class="buttons-list">
-
-        <% datastudent.forEach(function(person)
-
-        {
-        %>
-            <ul>
-
-
-                <li class="">student id is:
-                    <%= person.id %> naam: <a href="./person/<%= person.id %>"><%= person.name %>
-                        <%= person.prefix %>
-                        <%= person.surname %>
-                    </a>
-
-                </li>
-            </ul>
-
-        <% }); %>
             <p>gebruik de knoppen om naar een klas te gaan en de zoekfunctie om jezelf op te zoeken met je id nummer
                 zie je na het zoeken geen id nummer of naam dan bestaat het id niet</p>
 <!--            dit gebruiken omdat je anders een loop nodig hebt-->
@@ -87,11 +70,13 @@
     <button onclick="window.location.href='/squad/1f'" class="submit-searchbutton styling-filterbutton">  Squad 1f</button>
     </div>
     <ul class="students">
-<!--        zonder de foreach loop kan je de data niet weergeven omdat dit als json data staat en dit tevens ook een array is-->
+<!--        zonder de foreach loop kan je de data niet weergeven omdat dit als json data staat en
+ dit tevens ook een array is zodat je jezelf niet steeds hoeft te herhaeln-->
         <% persons.forEach(person => { %>
             <li>
                 <dl>
                     <dt>Naam</dt>
+<!--                    person is de object met daarin de keys id name en susrname -->
                     <dd><a href="./person/<%= person.id %>"><%= person.name %></a></dd>
                     <dt>Achternaam</dt>
                     <dd><%= person.surname %></dd>
@@ -101,6 +86,7 @@
                     <dd><%= person.id %></dd>
 
                 </dl>
+<!--                ternary operator if person heeft geen avatar laat dan de alternative afbeelding zien-->
                 <img src="<%= (person.avatar == '') ? 'images/placeholder.jpg' : person.avatar %>"
                      onerror="this.src='images/alternative.jpg'">
             </li>
