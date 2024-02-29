@@ -323,3 +323,8 @@ label[for="bericht"] textarea{
 .space-form-back{
   margin-top: 2em;
 }
+.buttons-list{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;align-items: center;
+}

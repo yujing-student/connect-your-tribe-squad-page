@@ -59,9 +59,12 @@
         <button type="submit" class="submit-searchbutton styling-filterbutton ">zoeken</button>
     </form>
 <!--    gebruk maken van dit zodat je geen foreach loop hoeft te gebruiken-->
-    <button onclick="window.location.href='/squad/1d'">Go to Squad 1d</button>
-    <button onclick="window.location.href='/squad/1e'">Go to Squad 2d</button>
-    <button onclick="window.location.href='/squad/1f'">Go to Squad 3d</button>
+    <div class="buttons-list">
+<p>filterformulier aan de zijkant werkt niet hamburger menue wel gebruik de knoppen om naar een klas te gaan en de zoekfunctie om jezelf op te zoeken met je id nummer</p>
+    <button onclick="window.location.href='/squad/1d'" class="submit-searchbutton styling-filterbutton"> Squad 1d</button>
+    <button onclick="window.location.href='/squad/1e'" class="submit-searchbutton styling-filterbutton">to Squad 2d</button>
+    <button onclick="window.location.href='/squad/1f'" class="submit-searchbutton styling-filterbutton">  Squad 3d</button>
+    </div>
     <ul class="students">
         <% persons.forEach(person => { %>
             <li>
