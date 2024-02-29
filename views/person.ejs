@@ -5,7 +5,7 @@
         <div>
             <dl>
                 <dt>Naam</dt>
-                <dd><a href="./person/<%= person.id %>"><%= person.name %></a></dd>
+                <dd class="name-green"><a href="./person/<%= person.id %>"><%= person.name %></a></dd>
                 <dt>Achternaam</dt>
                 <dd><%= person.surname %></dd>
                 <dt>Squad</dt>
@@ -13,8 +13,8 @@
                 <dt>Bio</dt>
                 <dd><%= person.bio %></dd>
             </dl>
-            <img src="<%= (person.avatar == '') ? 'images/placeholder.jpg' : person.avatar %>"
-                 onerror="this.src='images/alternative.jpg'">
+            <img src="<%= (person.avatar == '') ? '/images/placeholder.jpg' : person.avatar %>"
+                 onerror="this.src='/images/alternative.jpg'">
         </div>
     </section>
     <section class="send">
@@ -37,9 +37,9 @@
 
         <form method="POST" action="/person/<%= person.id %>">
             <% if (person.custom.like) { %>
-                <button type="submit" name="actie" value="vind-ik-niet-leuk">ik vind het niet leuk</button>
+                <button type="submit" name="actie" value="vind-ik-niet-leuk" class="heart">💔</button>
             <% } else { %>
-                <button type="submit" name="actie" value="vind-ik-leuk">ik vind het leuk</button>
+                <button type="submit" name="actie" value="vind-ik-leuk" class="heart">❤️</button>
             <% } %>
         </form>
     </section>

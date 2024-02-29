@@ -50,13 +50,13 @@
                 <input type="radio" />laag-hoog
             </label>
         </fieldset>
-        <button type="submit" class="submit-searchbutton"></button>
+        <button type="submit" class="submit-searchbutton styling-filterbutton" >filter</button>
     </form>
     <form action="/zoeken" method="get" class="zoekvak">
         <label for="id" class="">geef je eigen id op die in de database staat
             <input type="search" name="id" class=""><!--ik zeg nu ga zoeken en als name geef ik mee dat het id is en dat daar op gezocht word-->
         </label>
-        <button type="submit" class="submit-searchbutton ">zoeken</button>
+        <button type="submit" class="submit-searchbutton styling-filterbutton ">zoeken</button>
     </form>
     <ul class="students">
         <% persons.forEach(person => { %>

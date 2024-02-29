@@ -57,10 +57,9 @@ a svg {
   bottom: 0;
   transform: translateX(-90%);
   transition: 0.5s;
-  padding: 0 1em;
+  padding: 0 2em;
   border-radius: 0 50px 50px 0;
   z-index: 3;
-  bottom: 4em;
 
   & legend {
     text-align: center;
@@ -75,9 +74,10 @@ a svg {
   justify-content: center;
   display: flex;
   align-items: center;
+  margin-top: 1em;
 }
 .submit-searchbutton{
-  width: 10em;
+  width: 8em;
   justify-content: center;
   display: flex;
 
@@ -98,7 +98,7 @@ a svg {
 form {
   display: flex;
   flex-direction: column;
-  gap: 1em;
+  gap: 0.8em;
 }
 
 form label input {
@@ -148,7 +148,7 @@ div dl dd {
 
 .students li dl :is(dt, dd),
 div dl :is(dt, dd) {
-  padding: 0.25em 0.5em;
+  padding: 1.25em 0.5em;
 }
 
 .students img,
@@ -177,7 +177,11 @@ div img {
   border-radius: 10px;
   background-color: #f5f5f5;
 }
-
+@media only screen and (max-width: 600px) {
+  .zoekvak {
+    margin-left: 5em;
+  }
+}
 /* person.ejs */
 .MPerson {
   margin: auto;
@@ -189,8 +193,10 @@ div img {
   border-radius: 50px;
   border-color: black;
   text-decoration: none;
+  padding: 0.5em;
 
 }
+
 
 .personcard {
   /* scale: 2; */
@@ -230,12 +236,20 @@ label[for="bericht"] textarea{
 
 }
 
-.send button{
+.send{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.send button,.styling-filterbutton{
   background-color: var(--color--main);
   color: var(--color--white);
   padding: 0.5em;
   border-radius: 50px;
+  font-size: 1em;
 }
+
 
 
 .output{
@@ -256,6 +270,14 @@ label[for="bericht"] textarea{
   justify-content: center;
   margin: auto;
   margin-top: 2em;
+}
+
+.heart{
+  width: 5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5em;
 }
 
 @media (min-width: 50em) {
