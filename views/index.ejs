@@ -2,23 +2,27 @@
 <main class="MIndex">
     <!--    <section>-->
 
-    <form action="" class="menu">
+    <form  class="menu">
         <fieldset class="filter">
+<!--            hier-->
             <legend>Filter</legend>
             <p>klas</p>
 
             <label>
-                <input type="checkbox" />1D
+                <input type="checkbox" onclick="window.location.href='/squad/1d'" class="submit-searchbutton styling-filterbutton" />1D
             </label>
 
             <label>
-                <input type="checkbox" />1E
+                <input type="checkbox" onclick="window.location.href='/squad/1e'" class="submit-searchbutton styling-filterbutton"/>1E
             </label>
 
             <label>
-                <input type="checkbox" />1F
+                <input type="checkbox" onclick="window.location.href='/squad/1f'" class="submit-searchbutton styling-filterbutton"/>1F
             </label>
-
+<!--            dit werk niet omdat er 1 form is en naar 3 verschillende pagina's zijn dus moet dit in server js met een switch -->
+<!--            <button onclick="window.location.href='/squad/1d'" class="submit-searchbutton styling-filterbutton"> Squad 1d</button>-->
+<!--            <button onclick="window.location.href='/squad/1e'" class="submit-searchbutton styling-filterbutton"> Squad 1e</button>-->
+<!--            <button onclick="window.location.href='/squad/1f'" class="submit-searchbutton styling-filterbutton">  Squad 1f</button>-->
             <p>geslacht</p>
             <label>
                 <input type="checkbox" />Man
@@ -64,7 +68,7 @@
 <!--    https://developer.mozilla.org/en-US/docs/Web/API/Window/location-->
 <!--    https://www.w3schools.com/js/js_window_location.asp-->
     <div class="buttons-list">
-            <p>gebruik de knoppen om naar een klas te gaan en de zoekfunctie om jezelf op te zoeken met je id nummer
+            <p>gebruik de knoppen om naar een klas te gaan of het filtermenue en de zoekfunctie om jezelf op te zoeken met je id nummer
                 zie je na het zoeken geen id nummer of naam dan bestaat het id niet</p>
 <!--            dit gebruiken omdat je anders een loop nodig hebt met een array en dat wil ik niet-->
     <button onclick="window.location.href='/squad/1d'" class="submit-searchbutton styling-filterbutton"> Squad 1d</button>
