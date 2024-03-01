@@ -77,6 +77,39 @@ a svg {
   align-items: center;
   margin-top: 1em;
 }
+.zoekvak,
+.space-form-back{
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  margin-top: 1em;
+  color: var(--color--white);
+}
+
+.zoekvak label,
+.space-form-back label{
+  display: flex;
+  flex-direction: column;
+}
+
+.zoekvak label input,
+.space-form-back label input{
+  /*  */
+  color: var(--color--white);
+  background-color: rgb(0 129 82);
+  border: none;
+  height: 2em;
+  margin: inherit;
+  padding: 0 1em;
+  border-radius: 20px;
+}
+.white-text{
+  color: var(--color--white);
+}
+
+.zoekvak label input:focus{
+  outline: none;
+}
 .submit-searchbutton{
   width: 8em;
   justify-content: center;
