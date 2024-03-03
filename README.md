@@ -16,7 +16,7 @@
 
 ## Beschrijving
 
-![img.png](img.png)
+![img_1.png](img_1.png)
 
 <p>ik heb een squadpage gemaakt met teamgenoten met daarin eeen zoekfunctie 
 en 3 knoppen om naar 3 klassen te gaan</p>
