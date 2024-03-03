@@ -20,6 +20,7 @@
 
 <p>ik heb een squadpage gemaakt met teamgenoten met daarin eeen zoekfunctie 
 en 3 knoppen om naar 3 klassen te gaan</p>
+<p>de pagina staat neit meer live omdat ik van cyclicl maar 1 app gratis live kan hebbben</p>
 
 <!-- In de Beschrijving staat hoe je project er uit ziet, hoe het werkt en wat je er mee kan. -->
 <!-- Voeg een mooie poster visual toe 📸 -->
